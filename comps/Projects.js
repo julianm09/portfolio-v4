@@ -85,7 +85,7 @@ const VisitUI = styled.div`
 const projects = [
   {
     name: "fakeplants",
-    description:"I had the pleasure of working with nxtsndy on designing and developing their blog. The website was created using sanity as a content managment system.",
+    description:"I had the pleasure of working with nxtsndy on designing and developing their blog.",
     image: "/nxtsndy.png",
     link: "https://www.nxtsndy.com/",
     stack: "next.js, sanity",
