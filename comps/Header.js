@@ -3,12 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { GitHub, Linkedin } from "react-feather";
 
 const HeaderUI = styled.div`
-  padding: 0 0 50px 0;
+  padding: 50px 0 0 0;
   display: flex;
   justify-content: flex-end;
   position: fixed;
   width: 90%;
-  bottom: 0;
+  top: 0;
   z-index: 1000;
 `;
 

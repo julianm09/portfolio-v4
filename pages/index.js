@@ -17,7 +17,7 @@ const BorderUI = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
-  max-height: 650vh;
+  max-height: calc(650vh + 200px);
   transition: 0.5s ease;
   position: relative;
 `;
@@ -28,7 +28,6 @@ const SectionUI = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-
   flex-direction: column;
 `;
 
@@ -107,7 +106,7 @@ export default function Home() {
         <SectionUI>
           <H3>Check out some of my recent projects below.</H3>
         </SectionUI>
-        <SectionUI>
+        <SectionUI style={{margin: '200px 0'}}>
           <Projects />
         </SectionUI>
 

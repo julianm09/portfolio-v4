@@ -88,6 +88,10 @@ const SubmitUI = styled.button`
       animation: shake 0.2s infinite ease;
     }
   }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const ContactForm = ({}) => {
