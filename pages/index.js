@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Projects from "../comps/Projects";
 import { ContactForm } from "../comps/Contact";
 import { Header } from "../comps/Header";
+import { Loader } from "../comps/Loader";
 
 const ContainerUI = styled.div`
   display: flex;
@@ -58,7 +59,6 @@ const H3 = styled.div`
 export default function Home() {
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     function onScroll() {
@@ -77,36 +77,45 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <ContainerUI>
-      <Header/>
- 
+      <Loader loading={loading}/>
+      <Header />
+
       <BorderUI style={{ top: -scrollTop / 5 }}>
-        <SectionUI >
+        <SectionUI>
           <H1 style={{ margin: "0 0 50px 0" }}>Hi, I'm Julian</H1>
           <H2>I design and devlop</H2>
         </SectionUI>
-        <SectionUI >
+        <SectionUI>
           <H3>I'm a frontend developer and digital design student at BCIT.</H3>
         </SectionUI>
-        <SectionUI >
+        <SectionUI>
           <H3>
             I'm currently learning React Native to further my development. And
             Blender to sharpen my design.
           </H3>
         </SectionUI>
-        <SectionUI >
+        <SectionUI>
           <H3>Check out some of my recent projects below.</H3>
         </SectionUI>
-        <SectionUI >
-          <Projects/>
+        <SectionUI>
+          <Projects />
         </SectionUI>
 
-        <SectionUI >
+        <SectionUI>
           <H3>Please get in touch if you would like to work together.</H3>
         </SectionUI>
-        <SectionUI >
-          <ContactForm/>
+        <SectionUI>
+          <ContactForm />
         </SectionUI>
       </BorderUI>
       <Scene scrollTop={scrollTop} />

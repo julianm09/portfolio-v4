@@ -31,26 +31,11 @@ const LoaderUI = styled.div`
   
 `;
 
-export const Loader = () => {
+export const Loader = ({loading}) => {
 
     const transition = '0s cubic-bezier(0, 0.6, 1, 0)';
 
 
-  const [loading, setLoading] = useState(true);
-
-  
-
-  useEffect(() => {
-
-    
-    setTimeout(() => {
-      setLoading(false)
-    
-  
-    
-    }, 2000);
-    
-  }, []);
 
   const props = useSpring({ 
       
