@@ -34,7 +34,7 @@ const SectionUI = styled.div`
 const H1 = styled.div`
   display: flex;
   align-items: center;
-  font-size: calc(72px + 6vw);
+  font-size: calc(64px + 4vw);
   color: transparent;
   -webkit-text-stroke: 1px black;
 `;
@@ -86,12 +86,15 @@ export default function Home() {
 
   return (
     <ContainerUI>
-      <Loader loading={loading}/>
+      <Loader loading={loading} />
       <Header />
 
       <BorderUI style={{ top: -scrollTop / 5 }}>
         <SectionUI>
-          <H1 style={{ margin: "0 0 50px 0" }}>Hi, I'm Julian</H1>
+          <H1 style={{ margin: "0 0 50px 0" }}>
+            Hi, <br />
+            I'm Julian
+          </H1>
           <H2>I design and devlop</H2>
         </SectionUI>
         <SectionUI>
@@ -106,7 +109,7 @@ export default function Home() {
         <SectionUI>
           <H3>Check out some of my recent projects below.</H3>
         </SectionUI>
-        <SectionUI style={{margin: '200px 0'}}>
+        <SectionUI style={{ margin: "200px 0" }}>
           <Projects />
         </SectionUI>
 

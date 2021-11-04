@@ -46,8 +46,9 @@ const InputUI = styled.input`
   border: none;
   outline: none;
   border-bottom: 1px solid black;
+  -webkit-appearance: none;
+  border-radius: 0;
 
-  
   &:focus {
     outline: none;
   }
