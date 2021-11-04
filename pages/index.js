@@ -1,12 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
 import Scene from "../comps/Scene";
-import styles from "../styles/Home.module.css";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Projects from "../comps/Projects";
 import { ContactForm } from "../comps/Contact";
-import { Loader } from "../comps/Loader";
 import { Header } from "../comps/Header";
 
 const ContainerUI = styled.div`

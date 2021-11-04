@@ -97,7 +97,7 @@ export const ContactForm = ({}) => {
     e.preventDefault();
     window.scrollTo(0, 0);
 
-    /*     emailjs
+    emailjs
       .sendForm(
         "service_ccbzzua",
         "template_8iszzkr",
@@ -111,7 +111,7 @@ export const ContactForm = ({}) => {
         (error) => {
           console.log(error.text);
         }
-      ); */
+      );
   };
 
   const RowUI = styled.div`
