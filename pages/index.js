@@ -5,6 +5,8 @@ import Projects from "../comps/Projects";
 import { ContactForm } from "../comps/Contact";
 import { Header } from "../comps/Header";
 import { Loader } from "../comps/Loader";
+import useWindowSize from "../hooks/useWindowSize";
+import useScrollTop from "../hooks/useScrollTop";
 
 const ContainerUI = styled.div`
   display: flex;
@@ -20,6 +22,11 @@ const BorderUI = styled.div`
   max-height: calc(650vh + 250px);
   transition: 0.5s ease;
   position: relative;
+
+  @media (max-width: 1000px) {
+    max-height: none;
+    padding: 0 0 100px 0;
+  }
 `;
 
 const SectionUI = styled.div`
@@ -56,25 +63,8 @@ const H3 = styled.div`
 `;
 
 export default function Home() {
-  const [scrolling, setScrolling] = useState(false);
-  const [scrollTop, setScrollTop] = useState(0);
-
-  useEffect(() => {
-    function onScroll() {
-      let currentPosition = window.pageYOffset; // or use document.documentElement.scrollTop;
-      if (currentPosition > scrollTop) {
-        // downscroll code
-        setScrolling(false);
-      } else {
-        // upscroll code
-        setScrolling(true);
-      }
-      setScrollTop(currentPosition <= 0 ? 0 : currentPosition);
-    }
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollTop]);
+  const size = useWindowSize();
+  const scrollTop = useScrollTop();
 
   const [loading, setLoading] = useState(true);
 
@@ -89,13 +79,13 @@ export default function Home() {
       <Loader loading={loading} />
       <Header />
 
-      <BorderUI style={{ top: -scrollTop / 5 }}>
+      <BorderUI style={{ top: size.width > 1000 ? -scrollTop / 5 : 0 }}>
         <SectionUI>
           <H1 style={{ margin: "0 0 50px 0" }}>
             Hi, <br />
             I'm Julian
           </H1>
-          <H2>I design and devlop</H2>
+          <H2>I design and develop</H2>
         </SectionUI>
         <SectionUI>
           <H3>I'm a frontend developer and digital design student at BCIT.</H3>

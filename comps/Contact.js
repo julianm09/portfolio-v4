@@ -15,7 +15,6 @@ const InputContainer = styled.div`
   width: 100%;
   margin: 0 0 100px 0;
   display: flex;
-
   align-items: flex-end;
   justify-content: space-between;
 
@@ -87,8 +86,6 @@ const SubmitUI = styled.button`
   }
 
   &:hover {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     ${EmojiUI} {
       animation: shake 0.2s infinite ease;
@@ -100,63 +97,126 @@ const SubmitUI = styled.button`
   }
 `;
 
+const RowUI = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const MessageSentUI = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+`;
+
+const MessageTextUI = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 400px;
+  background-color: white;
+  z-index: 10000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background: black;
+  color: white;
+`;
+
 export const ContactForm = ({}) => {
   const [hovered, setHovered] = useState(false);
+  const [email, setEmail] = useState("");
+  const [wasSent, setWasSent] = useState("");
+  const [showMessage, setShowMessage] = useState("");
+
+  function validateEmail(email) {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
   const sendEmail = (e) => {
     e.preventDefault();
-    window.scrollTo(0, 0);
 
-    emailjs
-      .sendForm(
-        "service_ccbzzua",
-        "template_8iszzkr",
-        e.target,
-        "user_JhDMiRQCsoHKE2pRMkxeJ"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    if (validateEmail(email)) {
+      window.scrollTo(0, 0);
+
+      emailjs
+        .sendForm(
+          "service_ccbzzua",
+          "template_8iszzkr",
+          e.target,
+          "user_JhDMiRQCsoHKE2pRMkxeJ"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            setWasSent("Your message was sent!");
+            setShowMessage(true);
+            setTimeout(() => {
+              setShowMessage(false);
+            }, 1000);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      setShowMessage(true);
+      setWasSent("Please enter an email.");
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 1000);
+    }
   };
 
-  const RowUI = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  `;
-
   return (
-    <FormUI onSubmit={sendEmail}>
-      <InputContainer>
-        <InputLabel>Your Name:</InputLabel>
-        <InputUI type="text" name="user_name" />
-      </InputContainer>
+    <>
+      {showMessage ? (
+        <MessageSentUI>
+          <MessageTextUI>{wasSent}</MessageTextUI>
+        </MessageSentUI>
+      ) : (
+        <></>
+      )}
+      <FormUI onSubmit={sendEmail}>
+        <InputContainer>
+          <InputLabel>Your Name:</InputLabel>
+          <InputUI type="text" name="user_name" />
+        </InputContainer>
 
-      <InputContainer>
-        <InputLabel>Email:</InputLabel>
-        <InputUI type="email" name="user_email" />
-      </InputContainer>
+        <InputContainer>
+          <InputLabel>Email:</InputLabel>
+          <InputUI
+            type="email"
+            name="user_email"
+            text={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </InputContainer>
 
-      <InputContainer>
-        <InputLabel>Message:</InputLabel>
-        <InputUI name="message" />
-      </InputContainer>
+        <InputContainer>
+          <InputLabel>Message:</InputLabel>
+          <InputUI name="message" />
+        </InputContainer>
 
-      <RowUI>
-        <SubmitUI
-          onMouseEnter={() => setHovered(!hovered)}
-          onMouseLeave={() => setHovered(!hovered)}
-          type="submit"
-          value="send"
-        >
-          <EmojiUI className="emoji">🚀</EmojiUI>
-        </SubmitUI>
-      </RowUI>
-    </FormUI>
+        <RowUI>
+          <SubmitUI
+            onMouseEnter={() => setHovered(!hovered)}
+            onMouseLeave={() => setHovered(!hovered)}
+            type="submit"
+            value="send"
+          >
+            <EmojiUI className="emoji">🚀</EmojiUI>
+          </SubmitUI>
+        </RowUI>
+      </FormUI>
+    </>
   );
 };

@@ -84,7 +84,7 @@ const VisitUI = styled.div`
 
 const projects = [
   {
-    name: "fakeplants",
+    name: "nxtsndy",
     description:"I had the pleasure of working with nxtsndy on designing and developing their blog.",
     image: "/nxtsndy.png",
     link: "https://www.nxtsndy.com/",
