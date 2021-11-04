@@ -43,6 +43,11 @@ const InputUI = styled.input`
   width: 50%;
   font-size: calc(72px + 3vw);
   background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+
+  
   &:focus {
     outline: none;
   }
