@@ -17,7 +17,7 @@ const BorderUI = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
-  max-height: calc(650vh + 200px);
+  max-height: calc(650vh + 250px);
   transition: 0.5s ease;
   position: relative;
 `;
