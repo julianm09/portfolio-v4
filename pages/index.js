@@ -7,6 +7,7 @@ import { Header } from "../comps/Header";
 import { Loader } from "../comps/Loader";
 import useWindowSize from "../hooks/useWindowSize";
 import useScrollTop from "../hooks/useScrollTop";
+import Cursor from "../comps/Cursor";
 
 const ContainerUI = styled.div`
   display: flex;
@@ -19,10 +20,8 @@ const BorderUI = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
-  max-height: calc(650vh + 250px);
   transition: 0.5s ease;
   position: relative;
-
   @media (max-width: 1000px) {
     max-height: none;
     padding: 0 0 100px 0;
@@ -36,6 +35,7 @@ const SectionUI = styled.div`
   justify-content: center;
   position: relative;
   flex-direction: column;
+
 `;
 
 const H1 = styled.div`
@@ -67,6 +67,8 @@ export default function Home() {
   const scrollTop = useScrollTop();
 
   const [loading, setLoading] = useState(true);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,10 +78,11 @@ export default function Home() {
 
   return (
     <ContainerUI>
+      <Cursor position={position} setPosition={setPosition} hovering={hovering}/>
       <Loader loading={loading} />
       <Header />
 
-      <BorderUI style={{ top: size.width > 1000 ? -scrollTop / 5 : 0 }}>
+      <BorderUI style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }}>
         <SectionUI>
           <H1 style={{ margin: "0 0 50px 0" }}>
             Hi, <br />
@@ -99,14 +102,14 @@ export default function Home() {
         <SectionUI>
           <H3>Check out some of my recent projects below.</H3>
         </SectionUI>
-        <SectionUI style={{ margin: "200px 0" }}>
-          <Projects />
+        <SectionUI style={{ padding: "250px 0" }}>
+          <Projects position={position} setHovering={setHovering}/>
         </SectionUI>
 
         <SectionUI>
           <H3>Please get in touch if you would like to work together.</H3>
         </SectionUI>
-        <SectionUI>
+        <SectionUI style={{ padding: "250px 0" }}>
           <ContactForm />
         </SectionUI>
       </BorderUI>

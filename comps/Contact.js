@@ -26,7 +26,7 @@ const InputContainer = styled.div`
 
 const InputLabel = styled.div`
   -webkit-text-stroke: 1px black;
-  font-size: calc(72px + 3vw);
+  font-size: calc(48px + 3vw);
   color: transparent;
 `;
 
@@ -40,7 +40,7 @@ const InputUI = styled.input`
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   border-bottom: 1px solid black;
   width: 50%;
-  font-size: calc(72px + 3vw);
+  font-size: calc(32px + 1.5vw);
   background: none;
   border: none;
   outline: none;
@@ -71,7 +71,7 @@ const SubmitUI = styled.button`
   color: white;
   height: 150px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.1s ease;
 
   background: rgba(220, 220, 220, 0.55);
   backdrop-filter: blur(0px);
@@ -86,7 +86,7 @@ const SubmitUI = styled.button`
   }
 
   &:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     ${EmojiUI} {
       animation: shake 0.2s infinite ease;
     }
@@ -120,7 +120,8 @@ const MessageTextUI = styled.div`
   align-items: center;
   justify-content: center;
   height: 100px;
-  width: 400px;
+  max-width: 400px;
+  width: 50%;
   background-color: white;
   z-index: 10000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -169,7 +170,7 @@ export const ContactForm = ({}) => {
         );
     } else {
       setShowMessage(true);
-      setWasSent("Please enter an email.");
+      setWasSent("Enter an email to blast off!");
       setTimeout(() => {
         setShowMessage(false);
       }, 1000);

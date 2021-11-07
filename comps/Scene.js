@@ -5,6 +5,7 @@ import Orange from "../public/Orange";
 import Star from "../public/Star";
 import Rocket from "../public/Rocket";
 
+
 export default function Scene({ scrollTop }) {
   return (
     <Canvas
@@ -20,6 +21,7 @@ export default function Scene({ scrollTop }) {
       <Suspense fallback={null}>
         <ambientLight />
         <pointLight position={[-10, -10, 10]} />
+    
         <Star scrollTop={scrollTop} x={15} y={0} z={-15} rx={0} ry={0} rz={0} />
         <Star scrollTop={scrollTop} x={0} y={-20} z={-20} rx={0} ry={0} rz={0} />
         <Star
@@ -63,6 +65,16 @@ export default function Scene({ scrollTop }) {
           x={-10}
           y={-140}
           z={-20}
+          rx={0}
+          ry={0}
+          rz={0}
+        />
+
+<Star
+          scrollTop={scrollTop}
+          x={-scrollTop / 8 + 600}
+          y={-250}
+          z={-50}
           rx={0}
           ry={0}
           rz={0}

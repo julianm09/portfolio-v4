@@ -6,6 +6,8 @@ body {
   margin: 0;
   font-family: sofia-pro, sans-serif;
   scroll-behavior: smooth;
+  cursor: none;
+  overflow-x: hidden;
 }
 
 a {

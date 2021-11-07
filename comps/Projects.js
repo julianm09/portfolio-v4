@@ -4,13 +4,13 @@ import Scene from "./Scene";
 import styles from "../styles/Home.module.css";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import Project from "./Project";
 
 const ContainerUI = styled.div`
   display: grid;
-  grid-template-columns: 2fr 2fr;
-  grid-gap: 100px;
+  grid-template-columns: 2fr;
   @media (max-width: 1300px) {
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr ;
   }
 
   @media (max-width: 1000px) {
@@ -72,31 +72,35 @@ const RowUI = styled.div`
   width: 100%;
 `;
 
-const VisitUI = styled.div`
-  font-size: 16px;
-
-  border: 1px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+const ProjectNameUI = styled.div`
+  -webkit-text-stroke: 1px black;
+  font-size: calc(48px + 3vw);
+  color: transparent;
 `;
 
 const projects = [
+
   {
-    name: "nxtsndy",
-    description:"I had the pleasure of working with nxtsndy on designing and developing their blog.",
-    image: "/nxtsndy.png",
-    link: "https://www.nxtsndy.com/",
-    stack: "next.js, sanity",
+    name: "cd+wil",
+    description:
+      "I had the pleasure of working for Emily Carr's career devlopment and work integrated learning office in developing their website.",
+    image: "/cdwil.png",
+    link: "https://www.creativecareers.ca/",
+    stack: "React, GraphQL, Sanity.io",
   },
   {
-    name: "cdwil",
-    description:
-      "I had the pleasure of working for emily carr's career devlopment and work integrated learning office in developing their website.",
-    image: "/cdwil.png",
-    link: "https://cacto.ca/",
-    stack: "threejs, html, css",
+    name: "lela",
+    description: 'I had the pleasure of creating a logo, web design and web development for lela vietnamese.',
+    image: "/lela.png",
+    link: 'https://lelavietnamese.com/',
+    stack: "Next.js, Sanity.io, Stripe",
+  },
+  {
+    name: "nxtsndy",
+    description:"I had the pleasure of working with NXTSNDY on designing and developing their blog.",
+    image: "/nxtsndy.png",
+    link: "https://www.nxtsndy.com/",
+    stack: "Next.js, GraphQL, Sanity.io",
   },
   {
     name: "ecouture",
@@ -104,14 +108,7 @@ const projects = [
       "Ecouture is a interactive web app created to bring awarness to the sustainability of fast fashion.",
     image: "/ecouture.png",
     link: "https://www.ecouture.ca/",
-    stack: "threejs, blender, nextjs",
-  },
-  {
-    name: "lela",
-    description: 'I had the pleasure of creating a logo, web design and developing a website for lela vietnamese.',
-    image: "/lela.png",
-    link: 'https://lelavietnamese.com/',
-    stack: "nextjs, sanity, stripe",
+    stack: "Three.js, Blender, Next.js",
   },
   {
     name: "fakeplants",
@@ -119,7 +116,7 @@ const projects = [
       "Fakeplants is a collection of 3D rendered plants created myself using Blender. The website was created using react.",
     image: "/fakeplants.png",
     link: "https://fakeplants.io/",
-    stack: "react, blender",
+    stack: "React, Blender",
   },
   {
     name: "cacto",
@@ -127,24 +124,15 @@ const projects = [
       "Cacto is an exercise in branding and design created for my design class using vanilla js and Three.js",
     image: "/cacto.png",
     link: "https://cacto.ca/",
-    stack: "threejs, html, css",
+    stack: "Three.js, html, css",
   },
 ];
 
-export default function Projects({}) {
+export default function Projects({position, setHovering}) {
   return (
     <ContainerUI>
       {projects.map((p) => (
-        <GridItemUI key={p.name}>
-          <ImageUI style={{ width: "100%" }} src={p.image} />
-          <OverlayUI href={p.link} target="_blank">
-            <DescriptionUI>{p.description}</DescriptionUI>
-            <RowUI>
-              <StackUI>technology used: {p.stack}</StackUI>
-              <VisitUI>visit</VisitUI>
-            </RowUI>
-          </OverlayUI>
-        </GridItemUI>
+        <Project p={p}  position={position} setHovering={setHovering}/>
       ))}
     </ContainerUI>
   );
