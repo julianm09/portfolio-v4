@@ -10,7 +10,7 @@ const CursorUI = styled.div`
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 999999;
+  z-index: 9999999;
   display: ${(props) => (props.hovering ? "none" : "flex")};
 
   @media (max-width: 400px) {
@@ -27,7 +27,7 @@ const ShadowUI = styled.div`
     props.hovering ? "rgba(220, 220, 220, 0.55)" : "rgba(220, 220, 220, 0.55)"};
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 999999;
+  z-index: 9999999;
   transition: 0.1s ease-out;
   display: flex;
   justify-content: center;

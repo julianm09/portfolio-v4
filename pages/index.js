@@ -153,7 +153,7 @@ export default function Home({
             "Check out some of my recent projects below."
           )}
           </SectionUI>
-          <SectionUI style={{ padding: "250px 0" }}>
+          <SectionUI style={{ padding: "250px 0" }} id="work">
             <Projects
               position={position}
               setHovering={setHovering}
@@ -166,7 +166,7 @@ export default function Home({
             "Please get in touch if you would like to work together."
           )}
           </SectionUI>
-          <SectionUI style={{ padding: "250px 0" }}>
+          <SectionUI style={{ padding: "250px 0" }} id="contact">
             <ContactForm dark={dark} />
           </SectionUI>
         </BorderUI>

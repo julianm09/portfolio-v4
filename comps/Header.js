@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React, { useState, useRef, useEffect } from "react";
-import { GitHub, Linkedin, Sun, Moon } from "react-feather";
+import { GitHub, Linkedin, Sun, Moon, Menu, X } from "react-feather";
 import Link from "next/link";
+import useWindowSize from '../hooks/useWindowSize'
 
 const HeaderUI = styled.div`
   padding: 0 5%;
@@ -15,7 +16,7 @@ const HeaderUI = styled.div`
   z-index: 1000;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: 100000;
+  z-index: 1000000;
 `;
 
 const LogoUI = styled.div`
@@ -66,40 +67,130 @@ const DarkSwitchEmojiUI = styled.div`
 const LinkUI = styled.a`
   margin: 0 0 0 50px;
   cursor: pointer;
+  display: flex;
+  color: ${(props) => (props.dark ? "white" : "black")};
+`;
+
+const DesktopUI = styled.div`
+  display: flex;
+  @media (max-width: 1000px) {
+    display: none;
+  }
+`;
+
+const MobileUI = styled.div`
+  display: none;
+  cursor: pointer;
+  color: ${(props) => (props.dark ? "white" : "black")};
+  @media (max-width: 1000px) {
+    display: flex;
+  }
+`;
+
+const MobileMenuUI = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 100vw;
+  height: 100vh;
+  background: ${(props) => (props.dark ? "black" : "white")};
+  @media (max-width: 1000px) {
+    display: flex;
+    padding: 100px 5% 0 5%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+`;
+
+const MobileLinkUI = styled.a`
+  cursor: pointer;
+  margin: 50px 0;
 
   color: ${(props) => (props.dark ? "white" : "black")};
 `;
 
 export const Header = ({ dark, setDark }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const window = useWindowSize(); 
+  
   return (
-    <HeaderUI>
-      <Link href="/">
-        <LogoUI dark={dark}>Julian Mayes</LogoUI>
-      </Link>
+    <>
+      <HeaderUI>
+        <Link href="/">
+          <LogoUI dark={dark}>Julian Mayes</LogoUI>
+        </Link>
 
-      <NavUI>
-        <LinkUI
-          dark={dark}
-          target="_blank"
-          href="https://github.com/julianmayes"
-        >
-          <GitHub size={16} />
-        </LinkUI>
-        <LinkUI
-          dark={dark}
-          target="_blank"
-          href="https://www.linkedin.com/in/julian-taigo-mayes-b27898134/"
-        >
-          <Linkedin size={16} />
-        </LinkUI>
+        <NavUI>
+          <DesktopUI>
+            <Link href="/#work">
+              <LinkUI dark={dark}>work</LinkUI>
+            </Link>
 
-        <DarkUI dark={dark} onClick={() => setDark(!dark)}>
-          <DarkSwitchUI dark={dark}></DarkSwitchUI>
-          <DarkSwitchEmojiUI dark={dark}>
-            {dark ? <Sun size={16}/> : <Moon size={16}/>}
-          </DarkSwitchEmojiUI>
-        </DarkUI>
-      </NavUI>
-    </HeaderUI>
+            <Link href="/#contact">
+              <LinkUI dark={dark}>contact</LinkUI>
+            </Link>
+
+            <LinkUI
+              dark={dark}
+              target="_blank"
+              href="https://github.com/julianmayes"
+            >
+              <GitHub size={16} />
+            </LinkUI>
+            <LinkUI
+              dark={dark}
+              target="_blank"
+              href="https://www.linkedin.com/in/julian-mayes-b27898134/"
+            >
+              <Linkedin size={16} />
+            </LinkUI>
+          </DesktopUI>
+
+          <MobileUI dark={dark} onClick={() => setShowMenu(!showMenu)}>
+            {showMenu ? <X size={16} /> : <Menu size={16}/>}
+          </MobileUI>
+
+          <DarkUI dark={dark} onClick={() => setDark(!dark)}>
+            <DarkSwitchUI dark={dark}></DarkSwitchUI>
+            <DarkSwitchEmojiUI dark={dark}>
+              {dark ? <Sun size={16} /> : <Moon size={16} />}
+            </DarkSwitchEmojiUI>
+          </DarkUI>
+        </NavUI>
+      </HeaderUI>
+      {showMenu ? (
+        <MobileMenuUI dark={dark}>
+          <Link href="/#work">
+            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>work</MobileLinkUI>
+          </Link>
+
+          <Link href="/#contact">
+            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>contact</MobileLinkUI>
+          </Link>
+
+          <MobileLinkUI
+            dark={dark}
+            target="_blank"
+            href="https://github.com/julianmayes"
+            onClick={() => setShowMenu(false)}
+          >
+            <GitHub size={16} />
+          </MobileLinkUI>
+          <MobileLinkUI
+            dark={dark}
+            target="_blank"
+            href="https://www.linkedin.com/in/julian-mayes-b27898134/"
+            onClick={() => setShowMenu(false)}
+          >
+            <Linkedin size={16} />
+          </MobileLinkUI>
+        </MobileMenuUI>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };

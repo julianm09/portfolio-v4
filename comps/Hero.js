@@ -60,7 +60,7 @@ export const Hero = ({ project, dark }) => {
         {project.type} • {project.work}
       </H4>
       <H1
-        style={{ margin: "0 0 50px 0" }}
+        style={{ margin: "20px 0 70px 0" }}
         dark={dark}
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
