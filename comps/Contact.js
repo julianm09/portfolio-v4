@@ -46,7 +46,8 @@ const InputUI = styled.input`
   border-bottom: 1px solid black;
   -webkit-appearance: none;
   border-radius: 0;
-  border-bottom: ${(props) => (props.dark ? "1px solid white" : "1px solid black")};
+  border-bottom: ${(props) =>
+    props.dark ? "1px solid white" : "1px solid black"};
   color: ${(props) => (props.dark ? "white" : "black")};
   &:focus {
     outline: none;
@@ -67,12 +68,11 @@ const SubmitUI = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background:rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   height: 150px;
   cursor: pointer;
   transition: 0.1s ease;
-
 
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(0px);
@@ -111,7 +111,8 @@ const MessageSentUI = styled.div`
   height: 100vh;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  left: 0;
+  z-index: 10000;
 `;
 
 const MessageTextUI = styled.div`
@@ -134,7 +135,7 @@ export const ContactForm = ({ dark }) => {
   const [hovered, setHovered] = useState(false);
   const [email, setEmail] = useState("");
   const [wasSent, setWasSent] = useState("");
-  const [showMessage, setShowMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   function validateEmail(email) {
     const re =
@@ -144,9 +145,14 @@ export const ContactForm = ({ dark }) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    const message = document.getElementById("message");
+    const name = document.getElementById("name");
 
-    if (validateEmail(email)) {
-      window.scrollTo(0, 0);
+    if (validateEmail(email) && message.value.length > 0 && name.value.length > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
 
       emailjs
         .sendForm(
@@ -159,6 +165,7 @@ export const ContactForm = ({ dark }) => {
           (result) => {
             console.log(result.text);
             setWasSent("Your message was sent!");
+            message.value = "";
             setShowMessage(true);
             setTimeout(() => {
               setShowMessage(false);
@@ -170,7 +177,7 @@ export const ContactForm = ({ dark }) => {
         );
     } else {
       setShowMessage(true);
-      setWasSent("Enter an email to blast off!");
+      setWasSent("Enter all fields to blast off!");
       setTimeout(() => {
         setShowMessage(false);
       }, 1000);
@@ -188,8 +195,8 @@ export const ContactForm = ({ dark }) => {
       )}
       <FormUI onSubmit={sendEmail} dark={dark}>
         <InputContainer>
-          <InputLabel dark={dark}>Your Name:</InputLabel>
-          <InputUI dark={dark} type="text" name="user_name" />
+          <InputLabel dark={dark}>Name:</InputLabel>
+          <InputUI dark={dark} type="text" name="user_name" id="name"/>
         </InputContainer>
 
         <InputContainer>
@@ -205,7 +212,7 @@ export const ContactForm = ({ dark }) => {
 
         <InputContainer>
           <InputLabel dark={dark}>Message:</InputLabel>
-          <InputUI dark={dark} name="message" />
+          <InputUI dark={dark} name="message" id="message" />
         </InputContainer>
 
         <RowUI>
