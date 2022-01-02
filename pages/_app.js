@@ -25,18 +25,27 @@ function MyApp({ Component, pageProps }) {
       <Header dark={dark} setDark={setDark} />
 
       <Head>
-        <title>Julian Mayes</title>
-        <meta property="og:title" content="Julian Mayes" key="title" />
+        <title>Julian Mayes | Web Devloper + Designer | Vancouver, BC</title>
+        <meta
+          property="og:title"
+          content="Julian Mayes | Web Devloper + Designer | Vancouver, BC"
+          key="title"
+        />
 
         <meta
-          property="og:description"
-          content="Web developer and designer based out of Vancouver BC"
+          name="description"
+          content="My name is Julian, I am a web developer providing custom design and development services out of Vancouver, BC."
         />
+        <meta
+          property="og:description"
+          content="My name is Julian, I am a web developer providing custom design and development services out of Vancouver, BC."
+        />
+
         <meta property="og:image" content={"/pfp.png"} />
 
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="stylesheet" href="../styles/globals.css" />
-        <link rel="shortcut icon" href="/_static/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <Component
         {...pageProps}
