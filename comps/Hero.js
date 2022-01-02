@@ -48,7 +48,7 @@ const ButtonUI = styled(motion.a)`
   }
 `;
 
-export default function Hero({ project, dark }) {
+export const Hero = ({ project, dark }) => {
   return (
     <SectionUI align="center">
       <H4

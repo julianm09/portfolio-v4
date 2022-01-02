@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { projects } from "../../data/projects";
 import { motion } from "framer-motion";
-import Hero from "./comps/Hero";
-import ImageFadeUp from "./comps/ImageFadeUp";
-import TextFadeUp from "./comps/TextFadeUp";
+import { Hero } from "../../comps/Hero";
+import { TextFadeUp } from "../../comps/TextFadeUp";
+import { ImageFadeUp } from "../../comps/ImageFadeUp";
 
 const ContainerUI = styled.div`
   display: flex;

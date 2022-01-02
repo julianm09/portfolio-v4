@@ -29,7 +29,7 @@ const Img = styled(motion.img)`
   }
 `;
 
-const ImageFadeUp = (image, text) => {
+export const ImageFadeUp = (image, text) => {
   return (
     <>
       <Img
@@ -66,5 +66,3 @@ const ImageFadeUp = (image, text) => {
     </>
   );
 };
-
-export default ImageFadeUp;
