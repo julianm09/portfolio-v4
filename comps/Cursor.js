@@ -3,25 +3,28 @@ import React, { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "react-feather";
 
 const CursorUI = styled.div`
-  width: ${props => props.hovering ? '30px' : '10px'};
-  height: ${props => props.hovering ? '30px' : '10px'};
+  width: ${(props) => (props.hovering ? "30px" : "10px")};
+  height: ${(props) => (props.hovering ? "30px" : "10px")};
   border: 1px solid black;
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 999999;
-  display: ${props => props.hovering ? 'none' : 'flex'};
+  display: ${(props) => (props.hovering ? "none" : "flex")};
 
-
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
 
 const ShadowUI = styled.div`
-  width: ${props => props.hovering ? '50px' : '30px'};
-  height: ${props => props.hovering ? '50px' : '30px'};
+  width: ${(props) => (props.hovering ? "50px" : "30px")};
+  height: ${(props) => (props.hovering ? "50px" : "30px")};
   border-radius: 100%;
   position: fixed;
-  background: ${props => props.hovering ? 'rgba(220, 220, 220, 0.55)' : 'rgba(220, 220, 220, 0.55)'};
+  background: ${(props) =>
+    props.hovering ? "rgba(220, 220, 220, 0.55)" : "rgba(220, 220, 220, 0.55)"};
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 999999;
@@ -29,11 +32,13 @@ const ShadowUI = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
 
-const Cursor = ({position, setPosition, hovering}) => {
-  
-
+const Cursor = ({ position, setPosition, hovering }) => {
   useEffect(() => {
     addEventListeners();
     return () => removeEventListeners();
@@ -54,7 +59,7 @@ const Cursor = ({position, setPosition, hovering}) => {
   return (
     <>
       <CursorUI
-      hovering={hovering}
+        hovering={hovering}
         className="cursor"
         style={{
           left: `${position.x}px`,
@@ -62,12 +67,14 @@ const Cursor = ({position, setPosition, hovering}) => {
         }}
       />
       <ShadowUI
-      hovering={hovering}
+        hovering={hovering}
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
         }}
-      >{hovering ? <ArrowRight/> : <></>}</ShadowUI>
+      >
+        {hovering ? <ArrowRight /> : <></>}
+      </ShadowUI>
     </>
   );
 };

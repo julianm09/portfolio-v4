@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 import { projects } from "../../data/projects";
 import { motion } from "framer-motion";
 import { Hero } from "../../comps/Hero";
@@ -16,7 +17,7 @@ const ContainerUI = styled.div`
 `;
 
 const BorderUI = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
@@ -50,7 +51,7 @@ const SectionUI = styled.div`
   flex-direction: column;
 `;
 
-const NextProject = styled(motion.a)`
+const NextProject = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
@@ -105,19 +106,19 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center">
-          <NextProject
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            href={`/work/${nextProject.name}`}
-            dark={dark}
-            style={{ margin: "0 0 20px 0" }}
-            exit={{ opacity: 0 }}
-            color={nextProject.color}
-          >
-            next project
-          </NextProject>
-
-          <BlockUI color={nextProject.color}></BlockUI>
+          <Link href={`/work/${nextProject.name}`} >
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              onClick={() => setHovering(false)}
+              dark={dark}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
+          </Link>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

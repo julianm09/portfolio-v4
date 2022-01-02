@@ -1,27 +1,18 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import Cursor from "../comps/Cursor";
-import { Loader } from "../comps/Loader";
 import { Header } from "../comps/Header";
 import useWindowSize from "../hooks/useWindowSize";
 import useScrollTop from "../hooks/useScrollTop";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
 function MyApp({ Component, pageProps }) {
   const size = useWindowSize();
   const scrollTop = useScrollTop();
-
-  const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
-
-  const [dark, setDark] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  const [dark, setDark] = useState(false);
 
   return (
     <>
@@ -31,7 +22,7 @@ function MyApp({ Component, pageProps }) {
         hovering={hovering}
       />
 
-      <Header dark={dark} setDark={setDark}/>
+      <Header dark={dark} setDark={setDark} />
 
       <Head>
         <title>Julian Mayes</title>
@@ -54,7 +45,6 @@ function MyApp({ Component, pageProps }) {
         position={position}
         setHovering={setHovering}
         dark={dark}
-        loading={loading}
       />
     </>
   );

@@ -4,6 +4,7 @@ import Projects from "../comps/Projects";
 import { ContactForm } from "../comps/Contact";
 import { Loader } from "../comps/Loader";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const ContainerUI = styled(motion.div)`
   display: flex;
@@ -14,7 +15,7 @@ const ContainerUI = styled(motion.div)`
 `;
 
 const BorderUI = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
@@ -61,14 +62,31 @@ const H3 = styled(motion.div)`
   }
 `;
 
+const Background = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: ${props => props.dark ? 'black' : 'white'};
+  z-index: -1000;
+`;
+
 export default function Home({
   size,
   scrollTop,
   position,
   setHovering,
   dark,
-  loading,
 }) {
+
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   const TextFadeUp = (text) => {
     return (
@@ -93,17 +111,11 @@ export default function Home({
 
   return (
     <AnimatePresence>
+      <Background dark={dark}/>
       <Loader loading={loading} />
       <ContainerUI
         dark={dark}
         style={{ margin: "100px 0 0 0" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, x: 1000 }}
-        transition={{
-          delay: 0.2,
-          type: "ease",
-        }}
       >
         <BorderUI /* style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }} */
         >
@@ -111,14 +123,14 @@ export default function Home({
             <H1
               style={{ margin: "0 0 50px 0" }}
               dark={dark}
-              transition={{ delay: 2 }}
+              transition={{ delay: 1}}
               initial={{ x: 0, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >
               Hi, I'm Julian
             </H1>
             <H2
-              transition={{ delay: 2.4 }}
+              transition={{ delay: 1.2 }}
               initial={{ x: 0, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >

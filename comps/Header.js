@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import React, { useState, useRef, useEffect } from "react";
 import { GitHub, Linkedin } from "react-feather";
+import Link from "next/link";
 
 const HeaderUI = styled.div`
-  padding: 0 10%;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +18,7 @@ const HeaderUI = styled.div`
   z-index: 100000;
 `;
 
-const LogoUI = styled.a`
+const LogoUI = styled.div`
   cursor: pointer;
   font-size: 16px;
   color: ${(props) => (props.dark ? "white" : "black")};
@@ -47,7 +48,6 @@ const DarkSwitchUI = styled.div`
   position: absolute;
   left: ${(props) => (props.dark ? "26px" : "1px")};
   transition: 0.3s ease;
- 
 `;
 
 const DarkSwitchEmojiUI = styled.div`
@@ -57,7 +57,9 @@ const DarkSwitchEmojiUI = styled.div`
   position: absolute;
   left: ${(props) => (props.dark ? "1px" : "26px")};
   transition: 0.3s ease;
- 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const LinkUI = styled.a`
@@ -70,9 +72,9 @@ const LinkUI = styled.a`
 export const Header = ({ dark, setDark }) => {
   return (
     <HeaderUI>
-      <LogoUI dark={dark} href="/">
-        Julian Mayes
-      </LogoUI>
+      <Link href="/">
+        <LogoUI dark={dark}>Julian Mayes</LogoUI>
+      </Link>
 
       <NavUI>
         <LinkUI
@@ -92,7 +94,9 @@ export const Header = ({ dark, setDark }) => {
 
         <DarkUI dark={dark} onClick={() => setDark(!dark)}>
           <DarkSwitchUI dark={dark}></DarkSwitchUI>
-          <DarkSwitchEmojiUI dark={dark}>{dark ? '☀️' : '🌑'}</DarkSwitchEmojiUI>
+          <DarkSwitchEmojiUI dark={dark}>
+            {dark ? "☀️" : "🌑"}
+          </DarkSwitchEmojiUI>
         </DarkUI>
       </NavUI>
     </HeaderUI>
