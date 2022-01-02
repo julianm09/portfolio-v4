@@ -9,7 +9,7 @@ export const projects = [
       image: "/cdwil.png",
       link: "https://www.creativecareers.ca/",
       stack: "React, GraphQL, Sanity.io",
-      color:"#F02091",
+      color:"#00B188",
 
     },
     {
