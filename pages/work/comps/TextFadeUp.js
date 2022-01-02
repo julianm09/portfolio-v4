@@ -11,7 +11,7 @@ const H3 = styled(motion.div)`
   }
 `;
 
-export const TextFadeUp = (text) => {
+const TextFadeUp = (text) => {
   return (
     <H3
       initial="hidden"
@@ -30,3 +30,5 @@ export const TextFadeUp = (text) => {
     </H3>
   );
 };
+
+export default TextFadeUp;
