@@ -11,6 +11,7 @@
     "@react-three/drei": "^7.19.6",
     "@react-three/fiber": "^7.0.17",
     "emailjs-com": "^3.2.0",
+    "framer-motion": "^5.5.5",
     "lerp": "^1.0.3",
     "next": "12.0.2",
     "react": "17.0.2",

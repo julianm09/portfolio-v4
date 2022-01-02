@@ -1,29 +1,27 @@
 import Scene from "../comps/Scene";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import Projects from "../comps/Projects";
 import { ContactForm } from "../comps/Contact";
-import { Header } from "../comps/Header";
 import { Loader } from "../comps/Loader";
-import useWindowSize from "../hooks/useWindowSize";
-import useScrollTop from "../hooks/useScrollTop";
-import Cursor from "../comps/Cursor";
+import { motion, AnimatePresence } from "framer-motion";
 
-const ContainerUI = styled.div`
+const ContainerUI = styled(motion.div)`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   z-index: 1000;
+  color: ${(props) => (props.dark ? "white" : "black")};
 `;
 
 const BorderUI = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
   position: relative;
   @media (max-width: 1000px) {
     max-height: none;
+    width: 90%;
     padding: 0 0 100px 0;
   }
 `;
@@ -33,87 +31,135 @@ const SectionUI = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: ${(props) => props.align};
   position: relative;
   flex-direction: column;
-
 `;
 
-const H1 = styled.div`
+const H1 = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
+  line-height: 100px;
   color: transparent;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: ${(props) => (props.dark ? "1px white;" : "1px black;")};
 `;
 
-const H2 = styled.div`
+const H2 = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(18px + 1vw);
 `;
 
-const H3 = styled.div`
+const H3 = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(24px + 1vw);
-  width: calc(50%);
+  width: 50%;
   @media (max-width: 1000px) {
     width: 100%;
   }
 `;
 
-export default function Home() {
-  const size = useWindowSize();
-  const scrollTop = useScrollTop();
+export default function Home({
+  size,
+  scrollTop,
+  position,
+  setHovering,
+  dark,
+  loading,
+}) {
 
-  const [loading, setLoading] = useState(true);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hovering, setHovering] = useState(false)
+  const TextFadeUp = (text) => {
+    return (
+      <H3
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{
+          delay: 0.4,
+          type: "ease",
+        }}
+        variants={{
+          visible: { y: 0, opacity: 1 },
+          hidden: { y: 50, opacity: 0 },
+        }}
+      >
+        {text}
+      </H3>
+    );
+  };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
 
   return (
-    <ContainerUI>
-      <Cursor position={position} setPosition={setPosition} hovering={hovering}/>
+    <AnimatePresence>
       <Loader loading={loading} />
-      <Header />
+      <ContainerUI
+        dark={dark}
+        style={{ margin: "100px 0 0 0" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, x: 1000 }}
+        transition={{
+          delay: 0.2,
+          type: "ease",
+        }}
+      >
+        <BorderUI /* style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }} */
+        >
+          <SectionUI>
+            <H1
+              style={{ margin: "0 0 50px 0" }}
+              dark={dark}
+              transition={{ delay: 2 }}
+              initial={{ x: 0, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+            >
+              Hi, I'm Julian
+            </H1>
+            <H2
+              transition={{ delay: 2.4 }}
+              initial={{ x: 0, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+            >
+              I design and develop
+            </H2>
+          </SectionUI>
+          <SectionUI align="flex-start">
+          {TextFadeUp(
+            "I'm a frontend developer and digital design student at BCIT."
+          )}
 
-      <BorderUI style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }}>
-        <SectionUI>
-          <H1 style={{ margin: "0 0 50px 0" }}>
-            Hi, <br />
-            I'm Julian
-          </H1>
-          <H2>I design and develop</H2>
-        </SectionUI>
-        <SectionUI>
-          <H3>I'm a frontend developer and digital design student at BCIT.</H3>
-        </SectionUI>
-        <SectionUI>
-          <H3>
-            I'm currently learning React Native to further my development. And
-            Blender to sharpen my design.
-          </H3>
-        </SectionUI>
-        <SectionUI>
-          <H3>Check out some of my recent projects below.</H3>
-        </SectionUI>
-        <SectionUI style={{ padding: "250px 0" }}>
-          <Projects position={position} setHovering={setHovering}/>
-        </SectionUI>
+          </SectionUI>
+          <SectionUI align="flex-start">
+          {TextFadeUp(
+            "I'm currently learning React Native to further my development. And Blender to sharpen my design."
+          )}
+          </SectionUI>
+          <SectionUI align="flex-start">
+          {TextFadeUp(
+            "Check out some of my recent projects below."
+          )}
+          </SectionUI>
+          <SectionUI style={{ padding: "250px 0" }}>
+            <Projects
+              position={position}
+              setHovering={setHovering}
+              dark={dark}
+            />
+          </SectionUI>
 
-        <SectionUI>
-          <H3>Please get in touch if you would like to work together.</H3>
-        </SectionUI>
-        <SectionUI style={{ padding: "250px 0" }}>
-          <ContactForm />
-        </SectionUI>
-      </BorderUI>
-      <Scene scrollTop={scrollTop} />
-    </ContainerUI>
+          <SectionUI align="flex-start">
+          {TextFadeUp(
+            "Please get in touch if you would like to work together."
+          )}
+          </SectionUI>
+          <SectionUI style={{ padding: "250px 0" }}>
+            <ContactForm dark={dark} />
+          </SectionUI>
+        </BorderUI>
+        <Scene scrollTop={scrollTop} position={position} dark={dark} />
+      </ContainerUI>
+    </AnimatePresence>
   );
 }

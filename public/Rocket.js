@@ -32,11 +32,7 @@ export default function Rocket({
       (ref.current.position.z = z),
       //
       //rot x
-      (ref.current.rotation.x = lerp(
-        rx + ref.current.position.y * 0.5,
-        5 + scrollTop * 0.05,
-        0.006
-      )),
+      (ref.current.rotation.x = 0),
       //
       //rot y
       (ref.current.rotation.y += 0.01 + ry),

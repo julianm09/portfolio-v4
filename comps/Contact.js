@@ -25,9 +25,9 @@ const InputContainer = styled.div`
 `;
 
 const InputLabel = styled.div`
-  -webkit-text-stroke: 1px black;
   font-size: calc(48px + 3vw);
   color: transparent;
+  -webkit-text-stroke: ${(props) => (props.dark ? "1px white" : "1px black")};
 `;
 
 const EmojiUI = styled.div`
@@ -38,7 +38,6 @@ const InputUI = styled.input`
   border: none;
   font-family: sofia-pro, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  border-bottom: 1px solid black;
   width: 50%;
   font-size: calc(32px + 1.5vw);
   background: none;
@@ -47,7 +46,8 @@ const InputUI = styled.input`
   border-bottom: 1px solid black;
   -webkit-appearance: none;
   border-radius: 0;
-
+  border-bottom: ${(props) => (props.dark ? "1px solid white" : "1px solid black")};
+  color: ${(props) => (props.dark ? "white" : "black")};
   &:focus {
     outline: none;
   }
@@ -67,14 +67,14 @@ const SubmitUI = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background:rgba(255, 255, 255, 0.1);
   color: white;
   height: 150px;
   cursor: pointer;
   transition: 0.1s ease;
 
-  background: rgba(220, 220, 220, 0.55);
-  backdrop-filter: blur(0px);
+
+  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(0px);
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
 
@@ -130,7 +130,7 @@ const MessageTextUI = styled.div`
   color: white;
 `;
 
-export const ContactForm = ({}) => {
+export const ContactForm = ({ dark }) => {
   const [hovered, setHovered] = useState(false);
   const [email, setEmail] = useState("");
   const [wasSent, setWasSent] = useState("");
@@ -186,15 +186,16 @@ export const ContactForm = ({}) => {
       ) : (
         <></>
       )}
-      <FormUI onSubmit={sendEmail}>
+      <FormUI onSubmit={sendEmail} dark={dark}>
         <InputContainer>
-          <InputLabel>Your Name:</InputLabel>
-          <InputUI type="text" name="user_name" />
+          <InputLabel dark={dark}>Your Name:</InputLabel>
+          <InputUI dark={dark} type="text" name="user_name" />
         </InputContainer>
 
         <InputContainer>
-          <InputLabel>Email:</InputLabel>
+          <InputLabel dark={dark}>Email:</InputLabel>
           <InputUI
+            dark={dark}
             type="email"
             name="user_email"
             text={email}
@@ -203,8 +204,8 @@ export const ContactForm = ({}) => {
         </InputContainer>
 
         <InputContainer>
-          <InputLabel>Message:</InputLabel>
-          <InputUI name="message" />
+          <InputLabel dark={dark}>Message:</InputLabel>
+          <InputUI dark={dark} name="message" />
         </InputContainer>
 
         <RowUI>

@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Project from "./Project";
+import { projects } from "../data/projects";
 
 const ContainerUI = styled.div`
   display: grid;
@@ -78,61 +79,13 @@ const ProjectNameUI = styled.div`
   color: transparent;
 `;
 
-const projects = [
 
-  {
-    name: "cd+wil",
-    description:
-      "I had the pleasure of working for Emily Carr's career devlopment and work integrated learning office in developing their website.",
-    image: "/cdwil.png",
-    link: "https://www.creativecareers.ca/",
-    stack: "React, GraphQL, Sanity.io",
-  },
-  {
-    name: "lela",
-    description: 'I had the pleasure of creating a logo, web design and web development for lela vietnamese.',
-    image: "/lela.png",
-    link: 'https://lelavietnamese.com/',
-    stack: "Next.js, Sanity.io, Stripe",
-  },
-  {
-    name: "nxtsndy",
-    description:"I had the pleasure of working with NXTSNDY on designing and developing their blog.",
-    image: "/nxtsndy.png",
-    link: "https://www.nxtsndy.com/",
-    stack: "Next.js, GraphQL, Sanity.io",
-  },
-  {
-    name: "ecouture",
-    description:
-      "Ecouture is a interactive web app created to bring awarness to the sustainability of fast fashion.",
-    image: "/ecouture.png",
-    link: "https://www.ecouture.ca/",
-    stack: "Three.js, Blender, Next.js",
-  },
-  {
-    name: "fakeplants",
-    description:
-      "Fakeplants is a collection of 3D rendered plants created myself using Blender. The website was created using react.",
-    image: "/fakeplants.png",
-    link: "https://fakeplants.io/",
-    stack: "React, Blender",
-  },
-  {
-    name: "cacto",
-    description:
-      "Cacto is an exercise in branding and design created for my design class using vanilla js and Three.js",
-    image: "/cacto.png",
-    link: "https://cacto.ca/",
-    stack: "Three.js, html, css",
-  },
-];
+export default function Projects({position, setHovering, dark}) {
 
-export default function Projects({position, setHovering}) {
   return (
     <ContainerUI>
       {projects.map((p) => (
-        <Project p={p}  position={position} setHovering={setHovering}/>
+        <Project key={p.name} p={p} dark={dark} position={position} setHovering={setHovering}/>
       ))}
     </ContainerUI>
   );
