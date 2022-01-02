@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useRef, useEffect } from "react";
-import { GitHub, Linkedin } from "react-feather";
+import { GitHub, Linkedin, Sun, Moon } from "react-feather";
 import Link from "next/link";
 
 const HeaderUI = styled.div`
@@ -53,13 +53,14 @@ const DarkSwitchUI = styled.div`
 const DarkSwitchEmojiUI = styled.div`
   height: 23px;
   background: ${(props) => (props.dark ? "white" : "black")};
+  color: ${(props) => (props.dark ? "black" : "white")};
   width: 23px;
   position: absolute;
   left: ${(props) => (props.dark ? "1px" : "26px")};
   transition: 0.3s ease;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const LinkUI = styled.a`
@@ -95,7 +96,7 @@ export const Header = ({ dark, setDark }) => {
         <DarkUI dark={dark} onClick={() => setDark(!dark)}>
           <DarkSwitchUI dark={dark}></DarkSwitchUI>
           <DarkSwitchEmojiUI dark={dark}>
-            {dark ? "☀️" : "🌑"}
+            {dark ? <Sun size={16}/> : <Moon size={16}/>}
           </DarkSwitchEmojiUI>
         </DarkUI>
       </NavUI>
