@@ -18,7 +18,7 @@ export const TextFadeUp = (text) => {
       whileInView="visible"
       viewport={{ once: true }}
       transition={{
-        delay: 0.2,
+        delay: 0,
         type: "ease",
       }}
       variants={{

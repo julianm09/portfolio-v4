@@ -68,20 +68,13 @@ const Background = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${props => props.dark ? 'black' : 'white'};
+  background: ${(props) => (props.dark ? "black" : "white")};
   z-index: -1000;
 `;
 
-export default function Home({
-  size,
-  scrollTop,
-  position,
-  setHovering,
-  dark,
-}) {
-
+export default function Home({ size, scrollTop, position, setHovering, dark }) {
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -95,7 +88,7 @@ export default function Home({
         whileInView="visible"
         viewport={{ once: true }}
         transition={{
-          delay: 0.4,
+          delay: 0,
           type: "ease",
         }}
         variants={{
@@ -108,22 +101,18 @@ export default function Home({
     );
   };
 
-
   return (
     <AnimatePresence>
-      <Background dark={dark}/>
+      <Background dark={dark} />
       <Loader loading={loading} />
-      <ContainerUI
-        dark={dark}
-        style={{ margin: "100px 0 0 0" }}
-      >
+      <ContainerUI dark={dark} style={{ margin: "100px 0 0 0" }}>
         <BorderUI /* style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }} */
         >
           <SectionUI>
             <H1
               style={{ margin: "0 0 50px 0" }}
               dark={dark}
-              transition={{ delay: 1}}
+              transition={{ delay: 1 }}
               initial={{ x: 0, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >
@@ -138,20 +127,17 @@ export default function Home({
             </H2>
           </SectionUI>
           <SectionUI align="flex-start">
-          {TextFadeUp(
-            "I'm a frontend developer and digital design student at BCIT."
-          )}
-
+            {TextFadeUp(
+              "I'm a frontend developer and digital design student at BCIT."
+            )}
           </SectionUI>
           <SectionUI align="flex-start">
-          {TextFadeUp(
-            "I'm currently learning React Native to further my development. And Blender to sharpen my design."
-          )}
+            {TextFadeUp(
+              "I'm currently learning React Native to further my development. And Blender to sharpen my design."
+            )}
           </SectionUI>
           <SectionUI align="flex-start">
-          {TextFadeUp(
-            "Check out some of my recent projects below."
-          )}
+            {TextFadeUp("Check out some of my recent projects below.")}
           </SectionUI>
           <SectionUI style={{ padding: "250px 0" }} id="work">
             <Projects
@@ -162,9 +148,9 @@ export default function Home({
           </SectionUI>
 
           <SectionUI align="flex-start">
-          {TextFadeUp(
-            "Please get in touch if you would like to work together."
-          )}
+            {TextFadeUp(
+              "Please get in touch if you would like to work together."
+            )}
           </SectionUI>
           <SectionUI style={{ padding: "250px 0" }} id="contact">
             <ContactForm dark={dark} />
