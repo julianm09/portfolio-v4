@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { GitHub, Linkedin, Sun, Moon, Menu, X } from "react-feather";
 
 const SectionUI = styled.div`
   width: 100%;

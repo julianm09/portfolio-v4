@@ -105,7 +105,7 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
     <AnimatePresence>
       <Background dark={dark} />
       <Loader loading={loading} />
-      <ContainerUI dark={dark} style={{ margin: "100px 0 0 0" }}>
+      <ContainerUI dark={dark} style={{ margin: "0px 0 0 0" }}>
         <BorderUI /* style={{ top: size.width > 1000 ? -scrollTop / 25 : 0 }} */
         >
           <SectionUI>
