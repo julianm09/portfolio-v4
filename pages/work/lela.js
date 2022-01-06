@@ -81,7 +81,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage")}
+          {ImageFadeUp(project.image, "Homepage", dark)}
         </SectionUI>
 
         <SectionUI align="center">

@@ -82,21 +82,21 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage")}
+          {ImageFadeUp(project.image, "Homepage", dark)}
         </SectionUI>
 
         <SectionUI align="center">
           {TextFadeUp(
-            "We created an educational website with interactive tools to assist students discover what they can accomplish with the skills they gained at Emily Carr."
+            "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
           )}
         </SectionUI>
 
         <SectionUI align="center">
-          {ImageFadeUp("/career-pathway.gif", "Career Pathways Tool")}
+          {ImageFadeUp("/career-pathway.gif", "Career Pathways Tool", dark)}
         </SectionUI>
 
         <SectionUI align="center">
-          {ImageFadeUp("/skill-identifier.gif", "Skill Identifier Tool")}
+          {ImageFadeUp("/skill-identifier.gif", "Skill Identifier Tool", dark)}
         </SectionUI>
 
         <SectionUI align="center">

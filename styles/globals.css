@@ -86,4 +86,15 @@ a {
   }
 }
 
+@keyframes scrollindicator {
+  from {
+    transform: translateY(-25px);
+  }
 
+  50% {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(-25px);
+  }
+}

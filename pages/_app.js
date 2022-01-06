@@ -6,6 +6,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import useScrollTop from "../hooks/useScrollTop";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { ScrollIndicator } from "../comps/ScrollIndicator";
 
 function MyApp({ Component, pageProps }) {
   const size = useWindowSize();
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }) {
         setHovering={setHovering}
         dark={dark}
       />
+      <ScrollIndicator dark={dark}/>
     </>
   );
 }

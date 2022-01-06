@@ -29,7 +29,7 @@ const Img = styled(motion.img)`
   }
 `;
 
-export const ImageFadeUp = (image, text) => {
+export const ImageFadeUp = (image, text, dark) => {
   return (
     <>
       <Img
@@ -61,7 +61,7 @@ export const ImageFadeUp = (image, text) => {
           hidden: { x: 50, opacity: 0 },
         }}
       >
-        <H4>{text}</H4>
+        <H4 dark={dark}>{text}</H4>
       </RowUI>
     </>
   );

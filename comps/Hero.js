@@ -58,8 +58,9 @@ export const Hero = ({ project, dark }) => {
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
       >
-        {project.type} • {project.work}
+        {project.type} • {project.stack}
       </H4>
+
       <H1
         style={{ margin: "20px 0 70px 0" }}
         dark={dark}
@@ -69,6 +70,7 @@ export const Hero = ({ project, dark }) => {
       >
         {project.name}
       </H1>
+
       <ButtonUI
         target="_blank"
         href={project.link}
@@ -80,6 +82,7 @@ export const Hero = ({ project, dark }) => {
       >
         visit site
       </ButtonUI>
+      
     </SectionUI>
   );
 }
