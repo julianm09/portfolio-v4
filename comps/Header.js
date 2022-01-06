@@ -98,7 +98,7 @@ const MobileMenuUI = styled.div`
   background: ${(props) => (props.dark ? "black" : "white")};
   @media (max-width: 1000px) {
     display: flex;
-    padding: 100px 5% 0 5%;
+    padding: 0px 5% 0 5%;
     justify-content: center;
     align-items: center;
     flex-direction: column;

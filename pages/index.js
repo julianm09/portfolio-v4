@@ -57,6 +57,7 @@ const H3 = styled(motion.div)`
   align-items: center;
   font-size: calc(24px + 1vw);
   width: 50%;
+
   @media (max-width: 1000px) {
     width: 100%;
   }
