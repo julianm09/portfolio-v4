@@ -134,11 +134,11 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
           </SectionUI>
           <SectionUI align="flex-start">
             {TextFadeUp(
-              "I'm currently learning React Native to further my development. And Blender to sharpen my design."
+              "I love to create unique experiences and push my work to new horizons with each project, always putting quality first."
             )}
           </SectionUI>
           <SectionUI align="flex-start">
-            {TextFadeUp("Check out some of my recent projects below.")}
+            {TextFadeUp("Check out some of my recent work below.")}
           </SectionUI>
           <SectionUI style={{ padding: "250px 0" }} id="work">
             <Projects

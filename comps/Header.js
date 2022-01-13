@@ -119,7 +119,7 @@ export const Header = ({ dark, setDark }) => {
   return (
     <>
       <HeaderUI>
-        <Link href="/">
+        <Link href="/#">
           <LogoUI dark={dark}>Julian Mayes</LogoUI>
         </Link>
 

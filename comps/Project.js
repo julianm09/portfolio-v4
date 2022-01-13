@@ -69,33 +69,6 @@ const GridItemUI = styled.div`
   }
 `;
 
-const DescriptionUI = styled.div`
-  font-size: 20px;
-  font-weight: normal;
-  width: 25vw;
-
-  @media (max-width: 1000px) {
-    width: 100%;
-    margin: 0 0 50px 0;
-  }
-`;
-
-const StackUI = styled.div`
-  font-size: 16px;
-`;
-
-const RowUI = styled.div`
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-
-  @media (max-width: 1000px) {
-    flex-direction: column;
-  }
-`;
-
 export default function Project({ p, position, setHovering, dark }) {
   const [hover, setHover] = useState(false);
 

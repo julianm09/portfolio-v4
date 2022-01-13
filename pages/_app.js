@@ -26,20 +26,20 @@ function MyApp({ Component, pageProps }) {
       <Header dark={dark} setDark={setDark} />
 
       <Head>
-        <title>Julian Mayes | Web Devloper + Designer | Vancouver, BC</title>
+        <title>Julian Mayes | Frontend Developer + Designer | Vancouver, BC</title>
         <meta
           property="og:title"
-          content="Julian Mayes | Web Devloper + Designer | Vancouver, BC"
+          content="Julian Mayes | Frontend Developer + Designer | Vancouver, BC"
           key="title"
         />
 
         <meta
           name="description"
-          content="My name is Julian, I am a web developer providing custom design and development services out of Vancouver, BC."
+          content="My name is Julian, I am a frontend developer providing custom design and development services out of Vancouver, BC."
         />
         <meta
           property="og:description"
-          content="My name is Julian, I am a web developer providing custom design and development services out of Vancouver, BC."
+          content="My name is Julian, I am a frontend developer providing custom design and development services out of Vancouver, BC."
         />
 
         <meta property="og:image" content={"/pfp.png"} />
