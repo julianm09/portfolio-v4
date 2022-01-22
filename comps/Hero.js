@@ -156,8 +156,9 @@ const ButtonUI = styled(motion.div)`
   border: 1px solid white;
   color: white;
   background: ${(props) => props.color};
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 40px rgba(200, 200, 200, 0.25);
   z-index: 100;
+  border-radius: 5px;
 `;
 
 const MobileButtonUI = styled(motion.a)`
@@ -173,9 +174,9 @@ const MobileButtonUI = styled(motion.a)`
   border: 1px solid white;
   color: white;
   background: ${(props) => props.color};
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 40px rgba(200, 200, 200, 0.25);
   z-index: 100;
-
+  border-radius: 5px;
   @media (max-width: ${breakPoint}) {
     display: flex;
   }
@@ -183,7 +184,7 @@ const MobileButtonUI = styled(motion.a)`
 
 const ImageUI = styled(motion.img)`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: 0.5s ease;
 `;
 
