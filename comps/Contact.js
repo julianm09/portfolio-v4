@@ -1,8 +1,7 @@
 import styled from "styled-components";
-
 import { useState } from "react";
-
 import emailjs from "emailjs-com";
+import { AiFillRocket } from "react-icons/ai";
 
 const FormUI = styled.form`
   display: flex;
@@ -32,6 +31,7 @@ const InputLabel = styled.div`
 
 const EmojiUI = styled.div`
   animation: shake 0s infinite ease;
+  color:  ${(props) => (props.dark ? "white" : "black")};
 `;
 
 const InputUI = styled.input`
@@ -148,7 +148,11 @@ export const ContactForm = ({ dark }) => {
     const message = document.getElementById("message");
     const name = document.getElementById("name");
 
-    if (validateEmail(email) && message.value.length > 0 && name.value.length > 0) {
+    if (
+      validateEmail(email) &&
+      message.value.length > 0 &&
+      name.value.length > 0
+    ) {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -196,7 +200,7 @@ export const ContactForm = ({ dark }) => {
       <FormUI onSubmit={sendEmail} dark={dark}>
         <InputContainer>
           <InputLabel dark={dark}>Name:</InputLabel>
-          <InputUI dark={dark} type="text" name="user_name" id="name"/>
+          <InputUI dark={dark} type="text" name="user_name" id="name" />
         </InputContainer>
 
         <InputContainer>
@@ -222,7 +226,9 @@ export const ContactForm = ({ dark }) => {
             type="submit"
             value="send"
           >
-            <EmojiUI className="emoji">🚀</EmojiUI>
+            <EmojiUI className="emoji" dark={dark}>
+              <AiFillRocket />
+            </EmojiUI>
           </SubmitUI>
         </RowUI>
       </FormUI>

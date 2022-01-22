@@ -41,6 +41,7 @@ const DarkUI = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.3s ease;
+  cursor: pointer;
 `;
 const DarkSwitchUI = styled.div`
   height: 23px;

@@ -50,6 +50,7 @@ const H2 = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(18px + 1vw);
+  
 `;
 
 const H3 = styled(motion.div)`
@@ -57,6 +58,7 @@ const H3 = styled(motion.div)`
   align-items: center;
   font-size: calc(24px + 1vw);
   width: 50%;
+  line-height: 125%;
 
   @media (max-width: 1000px) {
     width: 100%;

@@ -6,6 +6,8 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 
+const breakPoint = "1200px";
+
 const ContainerUI = styled.div`
   display: flex;
   align-items: flex-start;
@@ -17,7 +19,7 @@ const ContainerUI = styled.div`
 `;
 
 const BorderUI = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
@@ -28,27 +30,24 @@ const BorderUI = styled.div`
   }
 `;
 
-const BlockUI = styled(motion.div)`
-  background: ${(props) => props.color};
-  background: transparent;
-  width: 100vw;
-  height: calc(100vh - 50px);
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const MoveCont = styled(motion.div)`
+  position: relative;
 `;
 
 const SectionUI = styled.div`
   width: 100%;
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  margin-bottom: 220px;
+  text-align: ${(props) => props.justify};
+  justify-content: ${(props) => props.justify};
+  padding: 0 5%;
   align-items: ${(props) => props.align};
   position: relative;
-  flex-direction: column;
+  flex-direction: row;
+  @media (max-width: ${breakPoint}) {
+    flex-direction: ${(props) => props.wrap};
+    justify-content: ${(props) => props.align};
+  }
 `;
 
 const NextProject = styled(motion.div)`
@@ -75,38 +74,30 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
       <BorderUI>
         <Hero project={project} dark={dark} />
 
-        <SectionUI align="center">
+        <SectionUI align="center" justify="space-between" wrap="column">
           {TextFadeUp(
             "I had the pleasure of building a website for Emily Carr's career development and work-integrated learning office."
           )}
+
+          {ImageFadeUp("/career-pathway.gif", "Homepage", dark)}
         </SectionUI>
 
-        <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage", dark)}
-        </SectionUI>
+        <SectionUI align="center" justify="space-between" wrap="column-reverse">
+          {ImageFadeUp("/skill-identifier.gif", "Homepage", dark)}
 
-        <SectionUI align="center">
           {TextFadeUp(
             "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
           )}
         </SectionUI>
 
-        <SectionUI align="center">
-          {ImageFadeUp("/career-pathway.gif", "Career Pathways Tool", dark)}
-        </SectionUI>
-
-        <SectionUI align="center">
-          {ImageFadeUp("/skill-identifier.gif", "Skill Identifier Tool", dark)}
-        </SectionUI>
-
-        <SectionUI align="center">
+        <SectionUI align="center" justify="center">
           {TextFadeUp(
             "Using React for the frontend, and Sanity as a content managment system, the website is easily updateable by the staff at Emily Carr."
           )}
         </SectionUI>
 
-        <SectionUI align="center">
-          <Link href={`/work/${nextProject.name}`} >
+        <SectionUI align="center" justify="center">
+          <Link href={`/work/${nextProject.name}`}>
             <NextProject
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}

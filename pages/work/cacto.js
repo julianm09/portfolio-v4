@@ -6,6 +6,9 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 
+
+const breakPoint = "1200px";
+
 const ContainerUI = styled.div`
   display: flex;
   align-items: flex-start;
@@ -17,7 +20,7 @@ const ContainerUI = styled.div`
 `;
 
 const BorderUI = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
@@ -28,30 +31,27 @@ const BorderUI = styled.div`
   }
 `;
 
-const BlockUI = styled(motion.div)`
-  background: ${(props) => props.color};
-  background: transparent;
-  width: 100vw;
-  height: calc(100vh - 50px);
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const MoveCont = styled(motion.div)`
+  position: relative;
 `;
 
 const SectionUI = styled.div`
   width: 100%;
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  margin-bottom: 220px;
+  text-align: ${(props) => props.justify};
+  justify-content: ${(props) => props.justify};
+  padding: 0 5%;
   align-items: ${(props) => props.align};
   position: relative;
-  flex-direction: column;
+  flex-direction: row;
+  @media (max-width: ${breakPoint}) {
+    flex-direction: ${(props) => props.wrap};
+    justify-content: ${(props) => props.align};
+  }
 `;
 
-const NextProject = styled(motion.a)`
+const NextProject = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
@@ -71,7 +71,51 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
   const nextProject = projects[0];
 
   return (
+
     <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
+    <BorderUI>
+      <Hero project={project} dark={dark} />
+
+      <SectionUI align="center" justify="space-between" wrap="column">
+        {TextFadeUp(
+          "Cacto is an exercise in branding and design created as a final project for my first semesters design class."
+        )}
+
+        {ImageFadeUp("/cacto.gif", "Homepage", dark)}
+      </SectionUI>
+
+{/*       <SectionUI align="center" justify="space-between" wrap="column-reverse">
+        {ImageFadeUp("/skill-identifier.gif", "Homepage", dark)}
+
+        {TextFadeUp(
+          "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
+        )}
+      </SectionUI> */}
+
+      <SectionUI align="center" justify="center">
+        {TextFadeUp(
+          "Using CSS animations and Three.js we created a fun and interactive online storefront for our brand."
+        )}
+      </SectionUI>
+
+      <SectionUI align="center" justify="center">
+        <Link href={`/work/${nextProject.name}`}>
+          <NextProject
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            onClick={() => setHovering(false)}
+            dark={dark}
+            style={{ margin: "0 0 20px 0" }}
+            exit={{ opacity: 0 }}
+            color={nextProject.color}
+          >
+            next project
+          </NextProject>
+        </Link>
+      </SectionUI>
+    </BorderUI>
+  </ContainerUI>
+/*     <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
       <BorderUI>
         <Hero project={project} dark={dark} />
 
@@ -92,17 +136,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center">{ImageFadeUp("/cacto.gif", "")}</SectionUI>
-
-        {/*         <SectionUI align="center">
-          {ImageFadeUp("/skill-identifier.gif", "Skill Identifier Tool")}
-        </SectionUI>
-
-        <SectionUI align="center">
-          {TextFadeUp(
-            "Using React for the frontend, and Sanity as a content managment system, the website is easily updateable by the staff at Emily Carr."
-          )}
-        </SectionUI> */}
-
         <SectionUI align="center">
           <Link href={`/work/${nextProject.name}`}>
             <NextProject
@@ -119,6 +152,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           </Link>
         </SectionUI>
       </BorderUI>
-    </ContainerUI>
+    </ContainerUI> */
   );
 }

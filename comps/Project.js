@@ -2,12 +2,9 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, motionValue, transform } from "framer-motion";
 
-
-const ProjectUI = styled(motion.div)`
-
-`;
+const ProjectUI = styled(motion.div)``;
 
 const ProjectNameUI = styled.div`
   font-size: calc(48px + 3vw);
@@ -17,13 +14,14 @@ const ProjectNameUI = styled.div`
   position: relative;
   left: 0;
   -webkit-text-stroke: ${(props) => (props.dark ? "1px white" : "1px black")};
-
 `;
 
-const ImageContainerUI = styled.div`
+const ImageContainerUI = styled(motion.div)`
   position: fixed;
   display: flex;
   flex-direction: column;
+  transition: 0.2s ease-out;
+  
 
   @media (max-width: 1000px) {
     display: flex;
@@ -36,7 +34,7 @@ const ImageUI = styled.img`
   width: 50vw;
   transition: 0.1s ease;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-
+  border-radius: 5px;
 
   @media (max-width: 1000px) {
     width: 100%;
@@ -51,7 +49,7 @@ const GridItemUI = styled.div`
   position: relative;
   z-index: 10000;
   cursor: none;
-  width: 35%;
+  width: 50%;
 
   @media (max-width: 1000px) {
     width: 100%;
@@ -103,6 +101,8 @@ export default function Project({ p, position, setHovering, dark }) {
 
       {hover && size.width > 1000 ? (
         <ImageContainerUI
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
           style={{ left: `${position.x + 50}px`, top: `${position.y / 15}vh` }}
         >
           <ImageUI src={p.image} />

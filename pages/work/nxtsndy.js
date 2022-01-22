@@ -6,6 +6,8 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 
+const breakPoint = "1200px";
+
 const ContainerUI = styled.div`
   display: flex;
   align-items: flex-start;
@@ -17,7 +19,7 @@ const ContainerUI = styled.div`
 `;
 
 const BorderUI = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   transition: 0.5s ease;
@@ -28,30 +30,27 @@ const BorderUI = styled.div`
   }
 `;
 
-const BlockUI = styled(motion.div)`
-  background: ${(props) => props.color};
-  background: transparent;
-  width: 100vw;
-  height: calc(100vh - 50px);
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const MoveCont = styled(motion.div)`
+  position: relative;
 `;
 
 const SectionUI = styled.div`
   width: 100%;
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  margin-bottom: 220px;
+  text-align: ${(props) => props.justify};
+  justify-content: ${(props) => props.justify};
+  padding: 0 5%;
   align-items: ${(props) => props.align};
   position: relative;
-  flex-direction: column;
+  flex-direction: row;
+  @media (max-width: ${breakPoint}) {
+    flex-direction: ${(props) => props.wrap};
+    justify-content: ${(props) => props.align};
+  }
 `;
 
-const NextProject = styled(motion.a)`
+const NextProject = styled(motion.div)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
@@ -66,45 +65,40 @@ const NextProject = styled(motion.a)`
   }
 `;
 
+
 export default function Home({ size, scrollTop, dark, setHovering }) {
   const project = projects[2];
   const nextProject = projects[2 + 1];
 
   return (
+
     <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
       <BorderUI>
         <Hero project={project} dark={dark} />
-        <SectionUI align="center">
+
+        <SectionUI align="center" justify="space-between" wrap="column">
           {TextFadeUp(
             "NXTSNDY is a creative collective focused on clothing design and music. I had the pleasure of working with them on designing and developing their blog."
           )}
+
+          {ImageFadeUp("/nxtsndy.gif", "Homepage", dark)}
         </SectionUI>
 
-        <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage")}
-        </SectionUI>
+        <SectionUI align="center" justify="space-between" wrap="column-reverse">
+          {ImageFadeUp("/nxtsndy-sanity.gif", "Homepage", dark)}
 
-        <SectionUI align="center">
           {TextFadeUp(
             "NXTSNDY required an interactive website that would stand out, while showcasing their talents and ideals."
           )}
         </SectionUI>
 
-        <SectionUI align="center">
-          {ImageFadeUp("/nxtsndy-sanity.gif", "Content Managment System")}
-        </SectionUI>
-
-        {/*         <SectionUI align="center">
-          {ImageFadeUp("/skill-identifier.gif", "Skill Identifier Tool")}
-        </SectionUI> */}
-
-        <SectionUI align="center">
+        <SectionUI align="center" justify="center">
           {TextFadeUp(
             "Using Sanity as a content managment system, the website is easy to update and make new posts."
           )}
         </SectionUI>
 
-        <SectionUI align="center">
+        <SectionUI align="center" justify="center">
           <Link href={`/work/${nextProject.name}`}>
             <NextProject
               onMouseEnter={() => setHovering(true)}
