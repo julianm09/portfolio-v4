@@ -160,7 +160,7 @@ const ButtonUI = styled(motion.div)`
   z-index: 100;
 `;
 
-const MobileButtonUI = styled(motion.div)`
+const MobileButtonUI = styled(motion.a)`
   display: none;
   align-items: center;
   justify-content: center;
