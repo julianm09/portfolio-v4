@@ -1,4 +1,4 @@
-import styled from "styled-components";
+/* import styled from "styled-components";
 import Link from "next/link";
 import { projects } from "../../data/projects";
 import { motion } from "framer-motion";
@@ -109,3 +109,4 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
     </ContainerUI>
   );
 }
+ */
