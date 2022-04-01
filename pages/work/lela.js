@@ -1,10 +1,89 @@
 import styled from "styled-components";
-import Link from "next/link";
 import { projects } from "../../data/projects";
-import { motion } from "framer-motion";
 import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+
+export default function Home({ size, scrollTop, dark, setHovering }) {
+  const project = projects[2];
+  const nextProject = projects[2 + 1];
+
+  const router = useRouter();
+
+  const handleClick = (e, href) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
+  const handleKeyDown = (e, href) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      router.push(href);
+    }
+  };
+
+  return (
+    <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
+      <BorderUI>
+        <Hero project={project} dark={dark} />
+
+        <SectionUI
+          align="center"
+          justify="space-between"
+          wrap="column"
+          tabIndex={0}
+        >
+          {TextFadeUp(
+            "Lê La Vietnamese is one of Calgary's best vietnamese restaurants. I worked with them in creating a redesign of their logo and website."
+          )}
+
+          {ImageFadeUp("/lela.gif", "Homepage", dark)}
+        </SectionUI>
+
+        <SectionUI
+          align="center"
+          justify="space-between"
+          wrap="column-reverse"
+          tabIndex={0}
+        >
+          {ImageFadeUp("/lela-sanity.gif", "Homepage", dark)}
+
+          {TextFadeUp(
+            "We created a system that allows the owner to upload and sell merchandise by integrating Stripe for payments and Sanity as a headless content management system."
+          )}
+        </SectionUI>
+
+        <SectionUI align="center" justify="center" tabIndex={0}>
+          {TextFadeUp(
+            "Using optimized keywords, we were able increase the websites google search ranking by 4 to 5 pages in multiple searches."
+          )}
+        </SectionUI>
+
+        <SectionUI align="center" justify="center">
+          <a
+            tabIndex={0}
+            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)}
+          >
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              onClick={() => setHovering(false)}
+              dark={dark}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
+          </a>
+        </SectionUI>
+      </BorderUI>
+    </ContainerUI>
+  );
+}
 
 const breakPoint = "1200px";
 
@@ -64,81 +143,3 @@ const NextProject = styled(motion.div)`
     -webkit-text-stroke: 0;
   }
 `;
-
-export default function Home({ size, scrollTop, dark, setHovering }) {
-  const project = projects[1];
-  const nextProject = projects[1 + 1];
-
-  return (
-    <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
-      <BorderUI>
-        <Hero project={project} dark={dark} />
-
-        <SectionUI align="center" justify="space-between" wrap="column">
-          {TextFadeUp(
-            "Lê La Vietnamese is one of Calgary's best vietnamese restaurants. I worked with them in creating a redesign of their logo and website."
-          )}
-
-          {ImageFadeUp("/lela.gif", "Homepage", dark)}
-        </SectionUI>
-
-        <SectionUI align="center" justify="space-between" wrap="column-reverse">
-          {ImageFadeUp("/lela-sanity.gif", "Homepage", dark)}
-
-          {TextFadeUp(
-            "We created a system that allows the owner to upload and sell merchandise by integrating Stripe for payments and Sanity as a headless content management system."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center" justify="center">
-          {TextFadeUp(
-            "Using optimized keywords, we were able increase the websites google search ranking by 4 to 5 pages in multiple searches."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center" justify="center">
-          <Link href={`/work/${nextProject.name}`}>
-            <NextProject
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              onClick={() => setHovering(false)}
-              dark={dark}
-              style={{ margin: "0 0 20px 0" }}
-              exit={{ opacity: 0 }}
-              color={nextProject.color}
-            >
-              next project
-            </NextProject>
-          </Link>
-        </SectionUI>
-      </BorderUI>
-    </ContainerUI>
-
-
-/*         <SectionUI align="center">
-          {TextFadeUp(
-            "Lê La Vietnamese is one of Calgary's best vietnamese restaurants. I worked with them in creating a redesign of their logo and website."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage", dark)}
-        </SectionUI>
-
-        <SectionUI align="center">
-          {TextFadeUp(
-            "We created a system that allows the owner to upload and sell merchandise by integrating Stripe for payments and Sanity as a headless content management system."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center">{ImageFadeUp("/lela.gif", "")}</SectionUI>
-
-   
-
-        <SectionUI align="center">
-          {TextFadeUp(
-            "Using optimized keywords, we were able increase the websites google search ranking by 4 to 5 pages in multiple searches."
-          )}
-        </SectionUI> */
-  );
-}

@@ -2,7 +2,124 @@ import styled from "styled-components";
 import React, { useState, useRef, useEffect } from "react";
 import { GitHub, Linkedin, Sun, Moon, Menu, X } from "react-feather";
 import Link from "next/link";
-import useWindowSize from '../hooks/useWindowSize'
+import useWindowSize from "../hooks/useWindowSize";     `           `
+import { useRouter } from "next/router";
+
+export const Header = ({ dark, setDark }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const window = useWindowSize();
+
+  const router = useRouter();
+
+  const handleClick = (e, href) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
+  const handleKeyDown = (e, href) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      router.push(href);
+    }
+  };
+
+  return (
+    <>
+      <HeaderUI>
+        <LogoUI
+          onKeyDown={(e) => handleKeyDown(e, `/#`)}
+          onClick={(e) => handleClick(e, `/#`)}
+          tabIndex={0}
+          dark={dark}
+        >
+          Julian Mayes
+        </LogoUI>
+
+        <NavUI>
+          <DesktopUI>
+            <LinkUI
+              onKeyDown={(e) => handleKeyDown(e, `/#work`)}
+              onClick={(e) => handleClick(e, `/#work`)}
+              tabIndex={0}
+              dark={dark}
+            >
+              work
+            </LinkUI>
+
+            <LinkUI
+              onKeyDown={(e) => handleKeyDown(e, `/#contact`)}
+              onClick={(e) => handleClick(e, `/#contact`)}
+              tabIndex={0}
+              dark={dark}
+            >
+              contact
+            </LinkUI>
+
+            <LinkUI
+              dark={dark}
+              target="_blank"
+              href="https://github.com/julianmayes"
+            >
+              <GitHub size={16} />
+            </LinkUI>
+            <LinkUI
+              dark={dark}
+              target="_blank"
+              href="https://www.linkedin.com/in/julian-mayes-b27898134/"
+            >
+              <Linkedin size={16} />
+            </LinkUI>
+          </DesktopUI>
+
+          <MobileUI dark={dark} onClick={() => setShowMenu(!showMenu)}>
+            {showMenu ? <X size={16} /> : <Menu size={16} />}
+          </MobileUI>
+
+          <DarkUI dark={dark} onClick={() => setDark(!dark)}>
+            <DarkSwitchUI dark={dark}></DarkSwitchUI>
+            <DarkSwitchEmojiUI dark={dark}>
+              {dark ? <Sun size={16} /> : <Moon size={16} />}
+            </DarkSwitchEmojiUI>
+          </DarkUI>
+        </NavUI>
+      </HeaderUI>
+      {showMenu ? (
+        <MobileMenuUI dark={dark}>
+          <Link href="/#work">
+            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>
+              work
+            </MobileLinkUI>
+          </Link>
+
+          <Link href="/#contact">
+            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>
+              contact
+            </MobileLinkUI>
+          </Link>
+
+          <MobileLinkUI
+            dark={dark}
+            target="_blank"
+            href="https://github.com/julianmayes"
+            onClick={() => setShowMenu(false)}
+          >
+            <GitHub size={16} />
+          </MobileLinkUI>
+          <MobileLinkUI
+            dark={dark}
+            target="_blank"
+            href="https://www.linkedin.com/in/julian-mayes-b27898134/"
+            onClick={() => setShowMenu(false)}
+          >
+            <Linkedin size={16} />
+          </MobileLinkUI>
+        </MobileMenuUI>
+      ) : (
+        <></>
+      )}
+    </>
+  );
+};
 
 const HeaderUI = styled.div`
   padding: 0 5%;
@@ -19,7 +136,7 @@ const HeaderUI = styled.div`
   z-index: 1000000;
 `;
 
-const LogoUI = styled.div`
+const LogoUI = styled.a`
   cursor: pointer;
   font-size: 16px;
   color: ${(props) => (props.dark ? "white" : "black")};
@@ -31,7 +148,8 @@ const NavUI = styled.div`
   align-items: center;
 `;
 
-const DarkUI = styled.div`
+const DarkUI = styled.button`
+  border: 0;
   height: 25px;
   background: ${(props) => (props.dark ? "white" : "black")};
   width: 50px;
@@ -112,86 +230,3 @@ const MobileLinkUI = styled.a`
 
   color: ${(props) => (props.dark ? "white" : "black")};
 `;
-
-export const Header = ({ dark, setDark }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const window = useWindowSize(); 
-  
-  return (
-    <>
-      <HeaderUI>
-        <Link href="/#">
-          <LogoUI dark={dark}>Julian Mayes</LogoUI>
-        </Link>
-
-        <NavUI>
-          <DesktopUI>
-            <Link href="/#work">
-              <LinkUI dark={dark}>work</LinkUI>
-            </Link>
-
-            <Link href="/#contact">
-              <LinkUI dark={dark}>contact</LinkUI>
-            </Link>
-
-            <LinkUI
-              dark={dark}
-              target="_blank"
-              href="https://github.com/julianmayes"
-            >
-              <GitHub size={16} />
-            </LinkUI>
-            <LinkUI
-              dark={dark}
-              target="_blank"
-              href="https://www.linkedin.com/in/julian-mayes-b27898134/"
-            >
-              <Linkedin size={16} />
-            </LinkUI>
-          </DesktopUI>
-
-          <MobileUI dark={dark} onClick={() => setShowMenu(!showMenu)}>
-            {showMenu ? <X size={16} /> : <Menu size={16}/>}
-          </MobileUI>
-
-          <DarkUI dark={dark} onClick={() => setDark(!dark)}>
-            <DarkSwitchUI dark={dark}></DarkSwitchUI>
-            <DarkSwitchEmojiUI dark={dark}>
-              {dark ? <Sun size={16} /> : <Moon size={16} />}
-            </DarkSwitchEmojiUI>
-          </DarkUI>
-        </NavUI>
-      </HeaderUI>
-      {showMenu ? (
-        <MobileMenuUI dark={dark}>
-          <Link href="/#work">
-            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>work</MobileLinkUI>
-          </Link>
-
-          <Link href="/#contact">
-            <MobileLinkUI dark={dark} onClick={() => setShowMenu(false)}>contact</MobileLinkUI>
-          </Link>
-
-          <MobileLinkUI
-            dark={dark}
-            target="_blank"
-            href="https://github.com/julianmayes"
-            onClick={() => setShowMenu(false)}
-          >
-            <GitHub size={16} />
-          </MobileLinkUI>
-          <MobileLinkUI
-            dark={dark}
-            target="_blank"
-            href="https://www.linkedin.com/in/julian-mayes-b27898134/"
-            onClick={() => setShowMenu(false)}
-          >
-            <Linkedin size={16} />
-          </MobileLinkUI>
-        </MobileMenuUI>
-      ) : (
-        <></>
-      )}
-    </>
-  );
-};

@@ -31,7 +31,7 @@ const InputLabel = styled.div`
 
 const EmojiUI = styled.div`
   animation: shake 0s infinite ease;
-  color:  ${(props) => (props.dark ? "white" : "black")};
+  color: ${(props) => (props.dark ? "white" : "black")};
 `;
 
 const InputUI = styled.input`
@@ -49,9 +49,6 @@ const InputUI = styled.input`
   border-bottom: ${(props) =>
     props.dark ? "1px solid white" : "1px solid black"};
   color: ${(props) => (props.dark ? "white" : "black")};
-  &:focus {
-    outline: none;
-  }
 
   @media (max-width: 1000px) {
     width: 100%;
@@ -80,10 +77,6 @@ const SubmitUI = styled.button`
 
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
-  &:focus {
-    outline: none;
-  }
 
   &:hover {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);

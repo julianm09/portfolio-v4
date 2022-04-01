@@ -3,8 +3,76 @@ import { useState, useEffect } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import Link from "next/link";
 import { motion, motionValue, transform } from "framer-motion";
+import { useRouter } from "next/router";
 
-const ProjectUI = styled(motion.div)``;
+export default function Project({ p, position, setHovering, dark }) {
+  const [hover, setHover] = useState(false);
+
+  const router = useRouter();
+
+  const size = useWindowSize();
+
+  const handleMouseEnter = () => {
+    setHover(true);
+    setHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setHover(false);
+    setHovering(false);
+  };
+
+  const handleClick = (e, href) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
+  const handleKeyDown = (e, href) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      router.push(href);
+    }
+  };
+
+  return (
+    <ProjectUI>
+      <a
+        onKeyDown={(e) => handleKeyDown(e, `work/${p.name}`)}
+        onClick={(e) => handleClick(e, `work/${p.name}`)}
+        tabIndex={0}
+      >
+        <GridItemUI
+          onClick={handleMouseOut}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseOut}
+        >
+          <ProjectNameUI key={p.name} dark={dark}>
+            {p.name}
+          </ProjectNameUI>
+          <ImageContainerUI>
+            <ImageUI src={p.image} />
+          </ImageContainerUI>
+        </GridItemUI>
+      </a>
+
+      {hover && size.width > 1000 ? (
+        <ImageContainerUI
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          style={{ left: `${position.x + 50}px`, top: `${position.y / 15}vh` }}
+        >
+          <ImageUI src={p.image} />
+        </ImageContainerUI>
+      ) : (
+        <></>
+      )}
+    </ProjectUI>
+  );
+}
+
+const ProjectUI = styled(motion.div)`
+  margin: 100px 0;
+`;
 
 const ProjectNameUI = styled.div`
   font-size: calc(48px + 3vw);
@@ -21,7 +89,6 @@ const ImageContainerUI = styled(motion.div)`
   display: flex;
   flex-direction: column;
   transition: 0.2s ease-out;
-  
 
   @media (max-width: 1000px) {
     display: flex;
@@ -44,12 +111,11 @@ const ImageUI = styled.img`
 const GridItemUI = styled.div`
   display: flex;
   flex-direction: column;
-  height: 300px;
   box-sizing: border-box;
   position: relative;
   z-index: 10000;
   cursor: none;
-  width: 50%;
+  width: 50%;   
 
   @media (max-width: 1000px) {
     width: 100%;
@@ -66,50 +132,3 @@ const GridItemUI = styled.div`
     }
   }
 `;
-
-export default function Project({ p, position, setHovering, dark }) {
-  const [hover, setHover] = useState(false);
-
-  const size = useWindowSize();
-
-  const handleMouseEnter = () => {
-    setHover(true);
-    setHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setHover(false);
-    setHovering(false);
-  };
-
-  return (
-    <ProjectUI>
-      <Link href={`work/${p.name}`}>
-        <GridItemUI
-          onClick={handleMouseOut}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseOut}
-        >
-          <ProjectNameUI key={p.name} dark={dark}>
-            {p.name}
-          </ProjectNameUI>
-          <ImageContainerUI>
-            <ImageUI src={p.image} />
-          </ImageContainerUI>
-        </GridItemUI>
-      </Link>
-
-      {hover && size.width > 1000 ? (
-        <ImageContainerUI
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-          style={{ left: `${position.x + 50}px`, top: `${position.y / 15}vh` }}
-        >
-          <ImageUI src={p.image} />
-        </ImageContainerUI>
-      ) : (
-        <></>
-      )}
-    </ProjectUI>
-  );
-}

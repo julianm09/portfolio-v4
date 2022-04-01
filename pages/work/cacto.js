@@ -6,7 +6,6 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 
-
 const breakPoint = "1200px";
 
 const ContainerUI = styled.div`
@@ -71,72 +70,25 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
   const nextProject = projects[0];
 
   return (
-
     <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
-    <BorderUI>
-      <Hero project={project} dark={dark} />
-
-      <SectionUI align="center" justify="space-between" wrap="column">
-        {TextFadeUp(
-          "Cacto is an exercise in branding and design created as a final project for my first semesters design class."
-        )}
-
-        {ImageFadeUp("/cacto.gif", "Homepage", dark)}
-      </SectionUI>
-
-{/*       <SectionUI align="center" justify="space-between" wrap="column-reverse">
-        {ImageFadeUp("/skill-identifier.gif", "Homepage", dark)}
-
-        {TextFadeUp(
-          "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
-        )}
-      </SectionUI> */}
-
-      <SectionUI align="center" justify="center">
-        {TextFadeUp(
-          "Using CSS animations and Three.js we created a fun and interactive online storefront for our brand."
-        )}
-      </SectionUI>
-
-      <SectionUI align="center" justify="center">
-        <Link href={`/work/${nextProject.name}`}>
-          <NextProject
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            onClick={() => setHovering(false)}
-            dark={dark}
-            style={{ margin: "0 0 20px 0" }}
-            exit={{ opacity: 0 }}
-            color={nextProject.color}
-          >
-            next project
-          </NextProject>
-        </Link>
-      </SectionUI>
-    </BorderUI>
-  </ContainerUI>
-/*     <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
       <BorderUI>
         <Hero project={project} dark={dark} />
 
-        <SectionUI align="center">
+        <SectionUI align="center" justify="space-between" wrap="column">
           {TextFadeUp(
             "Cacto is an exercise in branding and design created as a final project for my first semesters design class."
           )}
+
+          {ImageFadeUp("/cacto.gif", "Homepage", dark)}
         </SectionUI>
 
-        <SectionUI align="center">
-          {ImageFadeUp(project.image, "Homepage")}
-        </SectionUI>
-
-        <SectionUI align="center">
+        <SectionUI align="center" justify="center">
           {TextFadeUp(
             "Using CSS animations and Three.js we created a fun and interactive online storefront for our brand."
           )}
         </SectionUI>
 
-        <SectionUI align="center">{ImageFadeUp("/cacto.gif", "")}</SectionUI>
-        <SectionUI align="center">
+        <SectionUI align="center" justify="center">
           <Link href={`/work/${nextProject.name}`}>
             <NextProject
               onMouseEnter={() => setHovering(true)}
@@ -152,6 +104,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           </Link>
         </SectionUI>
       </BorderUI>
-    </ContainerUI> */
+    </ContainerUI>
   );
 }

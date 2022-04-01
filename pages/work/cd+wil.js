@@ -5,6 +5,86 @@ import { motion } from "framer-motion";
 import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
+import { useRouter } from "next/router";
+
+export default function Home({ size, scrollTop, dark, setHovering }) {
+  const project = projects[1];
+  const nextProject = projects[2];
+
+  const router = useRouter();
+
+  const handleClick = (e, href) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
+  const handleKeyDown = (e, href) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      router.push(href);
+    }
+  };
+
+  return (
+    <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
+      <BorderUI>
+        <Hero project={project} dark={dark} />
+
+        <SectionUI
+          align="center"
+          justify="space-between"
+          wrap="column"
+          tabIndex={0}
+        >
+          {TextFadeUp(
+            "I had the pleasure of building a website for Emily Carr's career development and work-integrated learning office."
+          )}
+
+          {ImageFadeUp("/career-pathway.gif", "Homepage", dark)}
+        </SectionUI>
+
+        <SectionUI
+          align="center"
+          justify="space-between"
+          wrap="column-reverse"
+          tabIndex={0}
+        >
+          {ImageFadeUp("/skill-identifier.gif", "Homepage", dark)}
+
+          {TextFadeUp(
+            "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
+          )}
+        </SectionUI>
+
+        <SectionUI align="center" justify="center" tabIndex={0}>
+          {TextFadeUp(
+            "Using React for the frontend, and Sanity as a content managment system, the website is easily updateable by the staff at Emily Carr."
+          )}
+        </SectionUI>
+
+        <SectionUI align="center" justify="center">
+          <a
+            tabIndex={0}
+            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)}
+          >
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              onClick={() => setHovering(false)}
+              dark={dark}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
+          </a>
+        </SectionUI>
+      </BorderUI>
+    </ContainerUI>
+  );
+}
 
 const breakPoint = "1200px";
 
@@ -64,54 +144,3 @@ const NextProject = styled(motion.div)`
     -webkit-text-stroke: 0;
   }
 `;
-
-export default function Home({ size, scrollTop, dark, setHovering }) {
-  const project = projects[0];
-  const nextProject = projects[0 + 1];
-
-  return (
-    <ContainerUI style={{ margin: "0 0 0 0" }} dark={dark}>
-      <BorderUI>
-        <Hero project={project} dark={dark} />
-
-        <SectionUI align="center" justify="space-between" wrap="column">
-          {TextFadeUp(
-            "I had the pleasure of building a website for Emily Carr's career development and work-integrated learning office."
-          )}
-
-          {ImageFadeUp("/career-pathway.gif", "Homepage", dark)}
-        </SectionUI>
-
-        <SectionUI align="center" justify="space-between" wrap="column-reverse">
-          {ImageFadeUp("/skill-identifier.gif", "Homepage", dark)}
-
-          {TextFadeUp(
-            "We created an educational website with interactive tools to help students discover what they can accomplish with the skills learned at Emily Carr."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center" justify="center">
-          {TextFadeUp(
-            "Using React for the frontend, and Sanity as a content managment system, the website is easily updateable by the staff at Emily Carr."
-          )}
-        </SectionUI>
-
-        <SectionUI align="center" justify="center">
-          <Link href={`/work/${nextProject.name}`}>
-            <NextProject
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              onClick={() => setHovering(false)}
-              dark={dark}
-              style={{ margin: "0 0 20px 0" }}
-              exit={{ opacity: 0 }}
-              color={nextProject.color}
-            >
-              next project
-            </NextProject>
-          </Link>
-        </SectionUI>
-      </BorderUI>
-    </ContainerUI>
-  );
-}

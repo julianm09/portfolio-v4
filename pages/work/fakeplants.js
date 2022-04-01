@@ -90,12 +90,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           )}
         </SectionUI>
 
-{/*         <SectionUI align="center" justify="center">
-          {TextFadeUp(
-            "I created and rendered the models using Blender. The website was created using React and CSS animations."
-          )}
-        </SectionUI> */}
-
         <SectionUI align="center" justify="center">
           <Link href={`/work/${nextProject.name}`}>
             <NextProject
