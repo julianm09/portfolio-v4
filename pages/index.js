@@ -56,7 +56,7 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
               initial={{ x: 0, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >
-              I design and develop
+              I develop and design
             </H2>
           </SectionHeroUI>
           <SectionUI align="flex-start" tabIndex={0}>
