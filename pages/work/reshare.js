@@ -14,6 +14,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
 
   const handleClick = (e, href) => {
     e.preventDefault();
+    setHovering(false);
     router.push(href);
   };
 
@@ -29,7 +30,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
       <BorderUI>
         <Hero project={project} dark={dark} />
 
-        <SectionUI align="center" justify="center" tabIndex={0} padding={"5%"}>
+        <SectionUI align="center" justify="center" padding={"5%"}>
           {TextFadeUp(
             "Reshare is a grocery app that lets grocery stores sell excess inventory at a discounted price, while helping lower-income individuals have access to quality ingredients."
           )}
@@ -39,7 +40,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           align="center"
           justify="space-between"
           wrap="column"
-          tabIndex={0}
           padding={"20%"}
         >
           {TextFadeUp(
@@ -53,7 +53,6 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           align="center"
           justify="space-between"
           wrap="column-reverse"
-          tabIndex={0}
           padding={"20%"}
         >
           {MobileGIF("/reshare-store.gif", "Homepage", dark)}
@@ -62,30 +61,26 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           )}
         </SectionUI>
 
-        <SectionUI align="center" justify="center" tabIndex={0} padding={"5%"}>
+        <SectionUI align="center" justify="center" padding={"5%"}>
           {TextFadeUp(
             "Using firebase for our backend and authentication system, users get realtime updates when an item is posted."
           )}
         </SectionUI>
 
         <SectionUI align="center" justify="center" padding={"5%"}>
-          <a
-            tabIndex={0}
+          <NextProject
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
             onClick={(e) => handleClick(e, `${nextProject.name}`)}
+            dark={dark}
+            style={{ margin: "0 0 20px 0" }}
+            exit={{ opacity: 0 }}
+            tabIndex={0}
+            color={nextProject.color}
           >
-            <NextProject
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              onClick={() => setHovering(false)}
-              dark={dark}
-              style={{ margin: "0 0 20px 0" }}
-              exit={{ opacity: 0 }}
-              color={nextProject.color}
-            >
-              next project
-            </NextProject>
-          </a>
+            next project
+          </NextProject>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

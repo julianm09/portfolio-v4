@@ -41,7 +41,7 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
       <Loader loading={loading} />
       <ContainerUI dark={dark} style={{ margin: "0px 0 0 0" }}>
         <BorderUI>
-          <SectionHeroUI tabIndex={0}>
+          <SectionHeroUI>
             <H1
               style={{ margin: "0 0 50px 0" }}
               dark={dark}
@@ -59,17 +59,17 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
               I develop and design
             </H2>
           </SectionHeroUI>
-          <SectionUI align="flex-start" tabIndex={0}>
+          <SectionUI align="flex-start">
             {TextFadeUp(
               "I'm a frontend developer and digital design student at BCIT."
             )}
           </SectionUI>
-          <SectionUI align="flex-start" tabIndex={0}>
+          <SectionUI align="flex-start">
             {TextFadeUp(
               "I love to create unique experiences and push my work to new horizons with each project, always putting quality first."
             )}
           </SectionUI>
-          <SectionUI align="flex-start" tabIndex={0}> 
+          <SectionUI align="flex-start">
             {TextFadeUp("Check out some of my recent work below.")}
           </SectionUI>
           <SectionUI style={{ padding: "250px 0" }} id="work">
@@ -80,7 +80,7 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
             />
           </SectionUI>
 
-          <SectionUI align="flex-start" tabIndex={0}>
+          <SectionUI align="flex-start">
             {TextFadeUp(
               "Please get in touch if you would like to work together."
             )}
@@ -135,7 +135,7 @@ const SectionUI = styled.div`
   flex-direction: column;
 `;
 
-const H1 = styled(motion.div)`
+const H1 = styled(motion.h1)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
@@ -144,13 +144,13 @@ const H1 = styled(motion.div)`
   -webkit-text-stroke: ${(props) => (props.dark ? "1px white;" : "1px black;")};
 `;
 
-const H2 = styled(motion.div)`
+const H2 = styled(motion.h2)`
   display: flex;
   align-items: center;
   font-size: calc(18px + 1vw);
 `;
 
-const H3 = styled(motion.div)`
+const H3 = styled(motion.h3)`
   display: flex;
   align-items: center;
   font-size: calc(24px + 1vw);
@@ -164,7 +164,7 @@ const H3 = styled(motion.div)`
 
 const Background = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100vh;          
   position: fixed;
   top: 0;
   left: 0;

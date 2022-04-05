@@ -15,6 +15,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
 
   const handleClick = (e, href) => {
     e.preventDefault();
+    setHovering(false);
     router.push(href);
   };
 
@@ -30,12 +31,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
       <BorderUI>
         <Hero project={project} dark={dark} />
 
-        <SectionUI
-          align="center"
-          justify="space-between"
-          wrap="column"
-          tabIndex={0}
-        >
+        <SectionUI align="center" justify="space-between" wrap="column">
           {TextFadeUp(
             "Ecouture is a interactive web app created to bring awarness to the sustainability of fast fashion."
           )}
@@ -43,12 +39,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           {ImageFadeUp("/eco-test.gif", "Homepage", dark)}
         </SectionUI>
 
-        <SectionUI
-          align="center"
-          justify="space-between"
-          wrap="column-reverse"
-          tabIndex={0}
-        >
+        <SectionUI align="center" justify="space-between" wrap="column-reverse">
           {ImageFadeUp("/ecouture.gif", "Homepage", dark)}
 
           {TextFadeUp(
@@ -57,23 +48,19 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center">
-          <a
+          <NextProject
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
             tabIndex={0}
             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
             onClick={(e) => handleClick(e, `${nextProject.name}`)}
+            dark={dark}
+            style={{ margin: "0 0 20px 0" }}
+            exit={{ opacity: 0 }}
+            color={nextProject.color}
           >
-            <NextProject
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              onClick={() => setHovering(false)}
-              dark={dark}
-              style={{ margin: "0 0 20px 0" }}
-              exit={{ opacity: 0 }}
-              color={nextProject.color}
-            >
-              next project
-            </NextProject>
-          </a>
+            next project
+          </NextProject>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

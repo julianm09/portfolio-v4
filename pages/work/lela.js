@@ -14,6 +14,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
 
   const handleClick = (e, href) => {
     e.preventDefault();
+    setHovering(false)
     router.push(href);
   };
 
@@ -29,12 +30,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
       <BorderUI>
         <Hero project={project} dark={dark} />
 
-        <SectionUI
-          align="center"
-          justify="space-between"
-          wrap="column"
-          tabIndex={0}
-        >
+        <SectionUI align="center" justify="space-between" wrap="column">
           {TextFadeUp(
             "Lê La Vietnamese is one of Calgary's best vietnamese restaurants. I worked with them in creating a redesign of their logo and website."
           )}
@@ -42,12 +38,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           {ImageFadeUp("/lela.gif", "Homepage", dark)}
         </SectionUI>
 
-        <SectionUI
-          align="center"
-          justify="space-between"
-          wrap="column-reverse"
-          tabIndex={0}
-        >
+        <SectionUI align="center" justify="space-between" wrap="column-reverse">
           {ImageFadeUp("/lela-sanity.gif", "Homepage", dark)}
 
           {TextFadeUp(
@@ -55,30 +46,26 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           )}
         </SectionUI>
 
-        <SectionUI align="center" justify="center" tabIndex={0}>
+        <SectionUI align="center" justify="center">
           {TextFadeUp(
             "Using optimized keywords, we were able increase the websites google search ranking by 4 to 5 pages in multiple searches."
           )}
         </SectionUI>
 
         <SectionUI align="center" justify="center">
-          <a
-            tabIndex={0}
+          <NextProject
             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
             onClick={(e) => handleClick(e, `${nextProject.name}`)}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            dark={dark}
+            tabIndex={0}
+            style={{ margin: "0 0 20px 0" }}
+            exit={{ opacity: 0 }}
+            color={nextProject.color}
           >
-            <NextProject
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              onClick={() => setHovering(false)}
-              dark={dark}
-              style={{ margin: "0 0 20px 0" }}
-              exit={{ opacity: 0 }}
-              color={nextProject.color}
-            >
-              next project
-            </NextProject>
-          </a>
+            next project
+          </NextProject>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

@@ -24,6 +24,7 @@ export default function Project({ p, position, setHovering, dark }) {
 
   const handleClick = (e, href) => {
     e.preventDefault();
+    handleMouseOut();
     router.push(href);
   };
 
@@ -36,24 +37,20 @@ export default function Project({ p, position, setHovering, dark }) {
 
   return (
     <ProjectUI>
-      <a
+      <GridItemUI
+        tabIndex={0}
         onKeyDown={(e) => handleKeyDown(e, `work/${p.name}`)}
         onClick={(e) => handleClick(e, `work/${p.name}`)}
-        tabIndex={0}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseOut}
       >
-        <GridItemUI
-          onClick={handleMouseOut}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseOut}
-        >
-          <ProjectNameUI key={p.name} dark={dark}>
-            {p.name}
-          </ProjectNameUI>
-          <ImageContainerUI>
-            <ImageUI src={p.image} />
-          </ImageContainerUI>
-        </GridItemUI>
-      </a>
+        <ProjectNameUI key={p.name} dark={dark}>
+          {p.name}
+        </ProjectNameUI>
+        <ImageContainerUI>
+          <ImageUI src={p.image} />
+        </ImageContainerUI>
+      </GridItemUI>
 
       {hover && size.width > 1000 ? (
         <ImageContainerUI
@@ -115,7 +112,7 @@ const GridItemUI = styled.div`
   position: relative;
   z-index: 10000;
   cursor: none;
-  width: 50%;   
+  width: 50%;
 
   @media (max-width: 1000px) {
     width: 100%;
