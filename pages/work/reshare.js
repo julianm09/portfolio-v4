@@ -69,7 +69,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center" padding={"5%"}>
-          <Link href={`/work/${nextProject.name}`}>
+          <Link href={`/work/${nextProject.name}`} passHref>
             <NextProject
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
@@ -134,7 +134,7 @@ const SectionUI = styled.div`
   }
 `;
 
-const NextProject = styled(motion.div)`
+const NextProject = styled(motion.a)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);

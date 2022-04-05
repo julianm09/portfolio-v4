@@ -15,7 +15,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
 
   const handleClick = (e, href) => {
     e.preventDefault();
-    setHovering(false)
+    setHovering(false);
     router.push(href);
   };
 
@@ -54,20 +54,19 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center">
-        <Link href={`/work/${nextProject.name}`}>
-          <NextProject
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-/*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+          <Link href={`/work/${nextProject.name}`} passHref>
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              /*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
             onClick={(e) => handleClick(e, `${nextProject.name}`)} */
-            dark={dark}
-            tabIndex={0}
-            style={{ margin: "0 0 20px 0" }}
-            exit={{ opacity: 0 }}
-            color={nextProject.color}
-          >
-            next project
-          </NextProject>
+              dark={dark}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
           </Link>
         </SectionUI>
       </BorderUI>
@@ -119,7 +118,7 @@ const SectionUI = styled.div`
   }
 `;
 
-const NextProject = styled(motion.div)`
+const NextProject = styled(motion.a)`
   display: flex;
   align-items: center;
   font-size: calc(64px + 4vw);
