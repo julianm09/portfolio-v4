@@ -5,6 +5,7 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { MobileGIF } from "../../comps/MobileGif";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home({ size, scrollTop, dark, setHovering }) {
   const project = projects[0];
@@ -68,19 +69,20 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center" padding={"5%"}>
-          <NextProject
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
-            onClick={(e) => handleClick(e, `${nextProject.name}`)}
-            dark={dark}
-            style={{ margin: "0 0 20px 0" }}
-            exit={{ opacity: 0 }}
-            tabIndex={0}
-            color={nextProject.color}
-          >
-            next project
-          </NextProject>
+          <Link href={`/work/${nextProject.name}`}>
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              /*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)} */
+              dark={dark}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
+          </Link>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

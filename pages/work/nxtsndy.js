@@ -5,6 +5,7 @@ import { Hero } from "../../comps/Hero";
 import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home({ dark, setHovering }) {
   const project = projects[3];
@@ -53,19 +54,21 @@ export default function Home({ dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center">
-          <NextProject
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
-            onClick={(e) => handleClick(e, `${nextProject.name}`)}
-            dark={dark}
-            style={{ margin: "0 0 20px 0" }}
-            exit={{ opacity: 0 }}
-            color={nextProject.color}
-            tabIndex={0}
-          >
-            next project
-          </NextProject>
+          <Link href={`/work/${nextProject.name}`}>
+            <NextProject
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+              /*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)} */
+              dark={dark}
+              tabIndex={0}
+              style={{ margin: "0 0 20px 0" }}
+              exit={{ opacity: 0 }}
+              color={nextProject.color}
+            >
+              next project
+            </NextProject>
+          </Link>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

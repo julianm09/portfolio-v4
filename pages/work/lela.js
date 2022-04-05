@@ -5,6 +5,7 @@ import { TextFadeUp } from "../../comps/TextFadeUp";
 import { ImageFadeUp } from "../../comps/ImageFadeUp";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home({ size, scrollTop, dark, setHovering }) {
   const project = projects[2];
@@ -53,11 +54,12 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center">
+        <Link href={`/work/${nextProject.name}`}>
           <NextProject
-            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
-            onClick={(e) => handleClick(e, `${nextProject.name}`)}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
+/*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)} */
             dark={dark}
             tabIndex={0}
             style={{ margin: "0 0 20px 0" }}
@@ -66,6 +68,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
           >
             next project
           </NextProject>
+          </Link>
         </SectionUI>
       </BorderUI>
     </ContainerUI>

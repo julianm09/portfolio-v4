@@ -48,19 +48,21 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         </SectionUI>
 
         <SectionUI align="center" justify="center">
+        <Link href={`/work/${nextProject.name}`}>
           <NextProject
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            tabIndex={0}
-            onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
-            onClick={(e) => handleClick(e, `${nextProject.name}`)}
+/*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
+            onClick={(e) => handleClick(e, `${nextProject.name}`)} */
             dark={dark}
+            tabIndex={0}
             style={{ margin: "0 0 20px 0" }}
             exit={{ opacity: 0 }}
             color={nextProject.color}
           >
             next project
           </NextProject>
+          </Link>
         </SectionUI>
       </BorderUI>
     </ContainerUI>
