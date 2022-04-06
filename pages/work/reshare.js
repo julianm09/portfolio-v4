@@ -71,6 +71,7 @@ export default function Home({ size, scrollTop, dark, setHovering }) {
         <SectionUI align="center" justify="center" padding={"5%"}>
           <Link href={`/work/${nextProject.name}`} passHref>
             <NextProject
+              onClick={() => setHovering(false)}
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
               /*             onKeyDown={(e) => handleKeyDown(e, `${nextProject.name}`)}
