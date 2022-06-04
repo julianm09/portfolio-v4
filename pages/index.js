@@ -61,7 +61,7 @@ export default function Home({ size, scrollTop, position, setHovering, dark }) {
           </SectionHeroUI>
           <SectionUI align="flex-start">
             {TextFadeUp(
-              "I'm a frontend developer and digital design student at BCIT."
+              "I'm a frontend developer with a love for all things design."
             )}
           </SectionUI>
           <SectionUI align="flex-start">
